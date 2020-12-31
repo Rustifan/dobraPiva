@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Pivo na kilometre</h1>
+    <ul>
+        <% for (let beer of beers){ %>
+        
+        <li><%=beer.name%></li>
+        <a href="/pivo/<%=beer._id%>">pogledaj</a>
+        
+        <% } %>  
+    </ul> 
+
+    <div>
+        <a href="/pivo/make">Dodaj novo pivo</a>
+    </div>
+</body>
+</html>

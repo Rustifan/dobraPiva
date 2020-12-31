@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pivo View</title>
+</head>
+<body>
+    <h1><%=pivo.name%> </h1>
+    <div>vrsta: <%=pivo.beerStyle%> </div>
+    <div>mjesto: <%=pivo.location%> </div>
+    <div>opis: <%=pivo.description%> </div>
+    <a href="/pivo/<%=pivo._id%>/edit">edit</a>
+    <form action="/pivo/<%=pivo._id%>?_method=DELETE" method="POST">
+    <button>Izbriši</button>
+    </form>
+</body>
+
+</html>
