@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>beer Edit</title>
-</head>
-
-<body>
-    <h1>Add new beer</h1>
+<%-layout("./boilerplate/layout.ejs") %> 
+    
+<h1>Add new beer</h1>
     <form action="/beer/<%=beer._id%>/edit?_method=PUT" method="POST">
         <div>
             <label for="name">Beer name</label>
@@ -29,5 +22,3 @@
         </div>
         <button>Edit</button>
     
-</body>
-</html>

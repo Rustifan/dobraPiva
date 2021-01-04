@@ -1,4 +1,5 @@
 module.exports = function(req, res)
 {
-    res.render("home");
+    const title = "home";
+    res.render(title, {title});
 }

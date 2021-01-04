@@ -1,0 +1,27 @@
+body, html{
+    height:100%;
+
+}
+
+body{
+  background-image: url("/image/background.jpg");  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3  );
+  background-blend-mode: color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.main{
+    display:block;
+    border: black solid;
+    border-radius: 5px;
+    background-color: rgba(146, 127, 91, 0.459);
+    text-align: center;
+    width: 10em;
+    height: 5em;
+}
+

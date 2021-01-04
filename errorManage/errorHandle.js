@@ -2,11 +2,13 @@ module.exports = function(err, req, res, next)
 {
     if(err.status)
     {
-        res.status(err.status).send(err.message);
+        req.flash("err", err.message);
+        res.status(err.status).redirect("/beer");
         
     }
     else
     {
-        next(err);
+        req.flash("err", err.stack);
+        res.redirect("/beer");
     }
 }

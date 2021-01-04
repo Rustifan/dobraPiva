@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>beer Make</title>
-</head>
-<body>
-    <h1>Add new beer</h1>
+
+<%- layout("./boilerplate/layout.ejs")  %>     
+<h1>Add new beer</h1>
     <form action="/beer/make" method="POST">
         <div>
             <label for="name">Beer name</label>
@@ -28,10 +22,4 @@
         </div>
         <button>Send</button>
 
-        
-    
-    
-    
     </form>
-</body>
-</html>

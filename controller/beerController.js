@@ -1,17 +1,18 @@
 const Beer = require("../model/beerModel")
 const catchAssync = require("../errorManage/catchAssync");
+const findID = require("../Utils/findID");
 
 module.exports.beerHome = catchAssync(async function(req, res)
 {
     const beers = await Beer.find();
-
-    res.render("beer", {beers});
+    const title = "beer";
+    res.render(title, {beers, title});
 });
 
 module.exports.beerMakeGET = function(req, res)
 {
-    
-    res.render("beerMake");
+    const title = "beerMake";
+    res.render(title, {title});
 }
 
 module.exports.beerMakePOST = catchAssync(async function(req, res)
@@ -25,22 +26,27 @@ module.exports.beerMakePOST = catchAssync(async function(req, res)
 module.exports.beerView = catchAssync(async function(req, res)
 {
     const id = req.params.id;
-    const beer = await Beer.findById(id);
-    res.render("beerView", {beer});
+    const beer = await findID(id, Beer);
+    
+    const title = "beerView";
+    res.render(title, {beer, title});
 
 });
 
 module.exports.beerEditGET = catchAssync(async function(req, res)
 {
     const id = req.params.id;
-    const beer = await Beer.findById(id);
-    res.render("beerEdit", {beer});
+    const beer = await findID(id, Beer);
+
+    const title = "beerEdit";
+    res.render(title, {beer, title});
 });
 
 module.exports.beerEditPUT = catchAssync(async function(req, res)
 {
     const id = req.params.id;
-    const beer = await Beer.findById(id);
+    const beer = await findID(id, Beer);
+
     beer.name = req.body.name;
     beer.beerSyle = req.body.beerSyle;
     beer.location = req.body.location;
@@ -53,7 +59,8 @@ module.exports.beerEditPUT = catchAssync(async function(req, res)
 module.exports.beerDELETE = catchAssync(async function(req, res)
 {
     const id = req.params.id;
-    await Beer.findByIdAndDelete(id);
+    const beer = await findID(id, Beer);
+    beer.remove();
     res.redirect("/beer");
 });
 
