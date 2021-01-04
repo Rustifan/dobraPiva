@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Beer</title>
 </head>
 <body>
-    <h1>Pivo na kilometre</h1>
+    <h1>Beer list</h1>
     <ul>
         <% for (let beer of beers){ %>
         
         <li><%=beer.name%></li>
-        <a href="/pivo/<%=beer._id%>">pogledaj</a>
+        <a href="/beer/<%=beer._id%>">pogledaj</a>
         
         <% } %>  
     </ul> 
 
     <div>
-        <a href="/pivo/make">Dodaj novo pivo</a>
+        <a href="/beer/make">Dodaj novo beer</a>
     </div>
 </body>
 </html>

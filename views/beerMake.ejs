@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pivo Make</title>
+    <title>beer Make</title>
 </head>
 <body>
-    <h1>Dodaj Pivo</h1>
-    <form action="/pivo/make" method="POST">
+    <h1>Add new beer</h1>
+    <form action="/beer/make" method="POST">
         <div>
-            <label for="name">Ime piva</label>
-            <input type="text" id="name" placeholder="ime"name = "name" required> 
+            <label for="name">Beer name</label>
+            <input type="text" id="name" placeholder="name"name = "name" required> 
         </div>
         <div>
             <label for="beerStyle">beer style</label>
             <input type="text" id="beerStyle" placeholder="beer style" name = "beerStyle" required> 
         </div>
         <div>
-            <label for="location">odakle potječe</label>
-            <input type="text" id="location" placeholder="mjesto" name="location" required>
+            <label for="location">location</label>
+            <input type="text" id="location" placeholder="location" name="location" required>
         </div>
         <div>
-            <label for="description">kratki opis</label>
+            <label for="description">description</label>
             <textarea id="description" name="description" rows=4 cols=20 required>
                 
             </textarea>
         </div>
-        <button>Pošalji</button>
+        <button>Send</button>
 
         
     

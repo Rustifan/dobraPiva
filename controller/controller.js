@@ -1,2 +1,2 @@
 module.exports.home = require("./home");
-module.exports.pivoController = require("./pivoController");
+module.exports.beerController = require("./beerController");

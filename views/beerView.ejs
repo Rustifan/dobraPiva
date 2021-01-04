@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beer View</title>
+</head>
+<body>
+    <h1><%=beer.name%> </h1>
+    <div>beer style: <%=beer.beerStyle%> </div>
+    <div>location: <%=beer.location%> </div>
+    <div>description: <%=beer.description%> </div>
+    <a href="/beer/<%=beer._id%>/edit">edit</a>
+    <form action="/beer/<%=beer._id%>?_method=DELETE" method="POST">
+    <button>Delete</button>
+    </form>
+</body>
+
+</html>

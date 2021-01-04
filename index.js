@@ -3,7 +3,7 @@ const express = require("express");
 const mongoInit = require("./Core/mongoInit");
 const controller = require("./controller/controller");
 const path = require("path");
-const pivoRouter = require("./router/pivoRouter");
+const beerRouter = require("./router/beerRouter");
 const methodOverride=require("method-override");
 
 const port = 3000;
@@ -21,7 +21,7 @@ app.use(methodOverride("_method"));
 
 app.get("/", controller.home);
   
-app.use("/pivo", pivoRouter);
+app.use("/beer", beerRouter);
 
 app.listen(port, ()=>{
     console.log(`serving on port ${port}`);

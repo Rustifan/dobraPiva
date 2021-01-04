@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const pivoScheema = new Schema({
+const beerScheema = new Schema({
     name: {
         type: String,
         required: true
@@ -21,5 +21,5 @@ const pivoScheema = new Schema({
     image: String
 });
 
-const Pivo = mongoose.model("Pivo", pivoScheema);
-module.exports = Pivo;
+const Beer = mongoose.model("beer", beerScheema);
+module.exports = Beer;
