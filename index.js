@@ -5,6 +5,8 @@ const controller = require("./controller/controller");
 const path = require("path");
 const beerRouter = require("./router/beerRouter");
 const methodOverride=require("method-override");
+const ExpressError = require("./errorManage/ExpressError"); 
+const errorHandle = require("./errorManage/errorHandle");
 
 const port = 3000;
 const app = express();
@@ -22,6 +24,9 @@ app.use(methodOverride("_method"));
 app.get("/", controller.home);
   
 app.use("/beer", beerRouter);
+app.get("/*", (req, res)=>{throw(new ExpressError("Not Found 404", 404));});
+
+app.use(errorHandle);
 
 app.listen(port, ()=>{
     console.log(`serving on port ${port}`);
