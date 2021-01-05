@@ -17,6 +17,7 @@
   "author": "IvanCace",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.23.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
@@ -25,6 +26,8 @@
     "express-session": "^1.17.1",
     "joi": "^17.3.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.11.9"
+    "mongoose": "^5.11.9",
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0"
   }
 }

@@ -1,5 +1,7 @@
 <%- layout("./boilerplate/layout.ejs")  %> 
-<h1>Beer list</h1>
+
+<main class="BeerList">
+    <h1>Beer list</h1>
     <ul>
         <% for (let beer of beers){ %>
         
@@ -12,3 +14,5 @@
     <div>
         <a href="/beer/make">Add new beer</a>
     </div>
+</main>
+

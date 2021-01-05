@@ -1,0 +1,49 @@
+body, html{
+    height:100%;
+
+}
+
+body{
+  background-image: url("/image/background.jpg");  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3  );
+  background-blend-mode: color;
+  
+}
+
+main{
+  
+  display: flex;
+  
+  height: 80%;
+  flex-direction: row-reverse;
+  
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(146, 127, 91, 0.459);
+    border-radius: 50%;
+    text-align: center;
+    width: 40em;
+    height: 14em;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    top: 5em;
+    left: -5%;
+    
+
+}
+
+.title > h1{
+  font-size: 60px;
+  font-weight: 300;
+  text-align: center;
+  
+}
+
+
+

@@ -17,8 +17,17 @@ module.exports.beerMakeGET = function(req, res)
 
 module.exports.beerMakePOST = catchAssync(async function(req, res)
 {
-
     const beer = new Beer(req.body);
+
+    if(req.file)
+    {
+        
+        const path = req.file.path;
+        const filename = req.file.filename;
+        const originalName = req.file.originalname;
+        image = {path, filename, originalName};
+        beer.image = image;
+    }
     await beer.save();
     res.redirect("/beer");
 });
@@ -60,7 +69,9 @@ module.exports.beerDELETE = catchAssync(async function(req, res)
 {
     const id = req.params.id;
     const beer = await findID(id, Beer);
+    
     beer.remove();
+    
     res.redirect("/beer");
 });
 

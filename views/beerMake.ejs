@@ -1,25 +1,30 @@
+<%- layout("./boilerplate/layout.ejs") %>
+    <main>
+        <h1>Add new beer</h1>
+        <form action="/beer/make" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="name">Beer name</label>
+                <input type="text" id="name" placeholder="name" name="name" required>
+            </div>
+            <div>
+                <label for="beerStyle">beer style</label>
+                <input type="text" id="beerStyle" placeholder="beer style" name="beerStyle" required>
+            </div>
+            <div>
+                <label for="location">location</label>
+                <input type="text" id="location" placeholder="location" name="location" required>
+            </div>
+            <div>
+                <label for="description">description</label>
+                <textarea id="description" name="description" rows=4 cols=20 required>
 
-<%- layout("./boilerplate/layout.ejs")  %>     
-<h1>Add new beer</h1>
-    <form action="/beer/make" method="POST">
-        <div>
-            <label for="name">Beer name</label>
-            <input type="text" id="name" placeholder="name"name = "name" required> 
-        </div>
-        <div>
-            <label for="beerStyle">beer style</label>
-            <input type="text" id="beerStyle" placeholder="beer style" name = "beerStyle" required> 
-        </div>
-        <div>
-            <label for="location">location</label>
-            <input type="text" id="location" placeholder="location" name="location" required>
-        </div>
-        <div>
-            <label for="description">description</label>
-            <textarea id="description" name="description" rows=4 cols=20 required>
-                
             </textarea>
-        </div>
-        <button>Send</button>
+            </div>
+            <div>
+                <label for="img">upload image</label>
+                <input type="file" name="image" id="img">
+            </div>
+            <button>Send</button>
 
-    </form>
+        </form>
+    </main>

@@ -1,10 +1,24 @@
+<%-layout("./boilerplate/layout.ejs")%>
+    <main>
+        <h1>
+            <%=beer.name%>
+        </h1>
+        <div>beer style: <%=beer.beerStyle%>
+        </div>
+        <div>location: <%=beer.location%>
+        </div>
+        <div>description: <%=beer.description%>
+        </div>
+        <% if(beer.image.path){ %>
+            <div>
+                <img src=<%=beer.image.path%> alt=<%=beer.image.filename%>>
+            </div>    
+            
+        <% } %>  
+        
+        <a href="/beer/<%=beer._id%>/edit">edit</a>
 
-<%-layout("./boilerplate/layout.ejs")%> 
-    <h1><%=beer.name%> </h1>
-    <div>beer style: <%=beer.beerStyle%> </div>
-    <div>location: <%=beer.location%> </div>
-    <div>description: <%=beer.description%> </div>
-    <a href="/beer/<%=beer._id%>/edit">edit</a>
-    <form action="/beer/<%=beer._id%>?_method=DELETE" method="POST">
-    <button>Delete</button>
-    </form>
+        <form action="/beer/<%=beer._id%>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+    </main>
