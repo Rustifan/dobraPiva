@@ -1,18 +1,26 @@
-<%- layout("./boilerplate/layout.ejs")  %> 
+<%- layout("./boilerplate/layout.ejs") %>
 
-<main class="BeerList">
-    <h1>Beer list</h1>
-    <ul>
-        <% for (let beer of beers){ %>
+    <link rel="stylesheet" href="/css/beer.css">
+
+    <main class="BeerList">
+        <div class="list">
+            <h1>Beer list</h1>
+
+            <% for (let beer of beers){ %>
+                <div>
+                    
+                    <a href="/beer/<%=beer._id%>"><span><%=beer.name%> </span></a>
+                        
+                    
+                </div>
+
+
+                <% } %>
+            </div>
+            <div class="add">
+                <a href="/beer/make"><span>Add new beer</span></a>
+            </div>
+                    
         
-        <li><%=beer.name%></li>
-        <a href="/beer/<%=beer._id%>">view</a>
-        
-        <% } %>  
-    </ul> 
-
-    <div>
-        <a href="/beer/make">Add new beer</a>
-    </div>
-</main>
-
+    </main>
+    
