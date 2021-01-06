@@ -6,7 +6,7 @@ mongooseConnect();
 const names = ["brzo", "dlakavo", "lijepo", "slatko", "bugarsko", "smrdeće", "crno", "bijelo", "tribunjsko",
 "sretno", "poljansko", "drago", "naše", "satrano", "kuhinjsko", "stolno", "okruglo",
 "ponosno", "sveto", "beskrajno", "mrkopaljsko", "mrko", "dugo", "dostojno", "pravedno", "otpjevano",
-"kokos", "žuto", "kvrgavo", "pokošeno", "ne diraj", "korisno", "buničko", "bolničko", "nosorog" ];
+"kokos", "žuto", "kvrgavo", "pokošeno", "ne diraj", "korisno", "isusovo", "buničko", "bolničko", "nosorog" ];
 
 const locations =["Split", "Zagreb", "Šibenik", "Benkovac", "Tisno", "Prvić Luka",
 "Prvić Šepurina", "Oklaj", "Vukovar", "Zaton", "Velika Gorica", "Dubrovnik", "Donji Miholjac", "Požega",
