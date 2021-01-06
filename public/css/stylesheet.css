@@ -3,6 +3,15 @@ body{
     flex-direction: column;
 }
 
+*{
+    margin-bottom: 2px;
+}
+
+h1{
+    font-size: 2em;
+    font-weight: bold;
+}
+
 nav.navbar{
     display: flex;
     justify-content: center;
@@ -33,3 +42,4 @@ nav.navbar>a:hover{
     margin-top: 40px;
 
 }
+
