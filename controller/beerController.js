@@ -1,10 +1,12 @@
 const Beer = require("../model/beerModel")
+const Comment = require("../model/commentModel");
 const catchAssync = require("../errorManage/catchAssync");
 const findID = require("../Utils/findID");
 
 module.exports.beerHome = catchAssync(async function(req, res)
 {
     const beers = await Beer.find();
+    
     const title = "beer";
     res.render(title, {beers, title});
 });
@@ -36,9 +38,9 @@ module.exports.beerView = catchAssync(async function(req, res)
 {
     const id = req.params.id;
     const beer = await findID(id, Beer);
-    
+    const comments = await Comment.find({beer});
     const title = "beerView";
-    res.render(title, {beer, title});
+    res.render(title, {beer, title, comments});
 
 });
 

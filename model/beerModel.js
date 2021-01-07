@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const cloudinary = require("../Utils/imgUploadConfig").cloudinary;
+const Comment = require("./commentModel");
 
 const beerScheema = new Schema({
     name: {
@@ -25,9 +26,14 @@ const beerScheema = new Schema({
         originalName: String
     }
 });
+
 beerScheema.post("remove", async (doc)=>{
     if(doc.image.filename)
     {
+    
+       const comments = Comment.find({beer:doc});
+       
+       await comments.remove();   
     
        await cloudinary.uploader.destroy(doc.image.filename, (err, res )=>{
             

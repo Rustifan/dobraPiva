@@ -6,12 +6,14 @@ const mongoInit = require("./Core/mongoInit");
 const controller = require("./controller/controller");
 const path = require("path");
 const beerRouter = require("./router/beerRouter");
+const commentRouter = require("./router/commentRouter");
 const methodOverride=require("method-override");
 const ExpressError = require("./errorManage/ExpressError"); 
 const errorHandle = require("./errorManage/errorHandle");
 const engine = require("ejs-mate");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
+const paramFunction = require("./router/routerParamFunction");
 
 
 
@@ -39,9 +41,11 @@ app.use(methodOverride("_method"));
 app.use(flash());
 app.use((req, res, next)=>{res.locals.err = req.flash("err"); next();});
 
+
 //routes
 app.get("/", controller.home);
 app.use("/beer", beerRouter);
+app.use("/beer/:id/comments", paramFunction, commentRouter);
 app.get("/*", (req, res)=>{throw(new ExpressError("Not Found 404", 404));});
 
 //error handeling

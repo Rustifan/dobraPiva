@@ -21,18 +21,61 @@
                     <div class=beerDescription><b>Description: </b>
                         <%=beer.description%>
                     </div>
-                <div class = "buttons">
-                    <div class="anchorButton">
-                        <a href="/beer/<%=beer._id%>/edit">
-                            <p>edit</p>
-                        </a>
+                    <div class="buttons">
+                        <div class="anchorButton">
+                            <a href="/beer/<%=beer._id%>/edit">
+                                <p>edit</p>
+                            </a>
 
+                        </div>
+
+                        <form class="deleteForm" action="/beer/<%=beer._id%>?_method=DELETE" method="POST">
+                            <button class="Button">
+                                <p>Delete</p>
+                            </button>
+                        </form>
                     </div>
-
-                    <form class="deleteForm" action="/beer/<%=beer._id%>?_method=DELETE" method="POST">
-                        <button class="Button"><p>Delete</p></button>
-                    </form>
-                </div>
         </div>
-        <div class="card comments"></div>
+        <div class="card form">
+
+            <h2>Post Comment</h2>
+            <form action="/beer/<%=beer._id%>/comments" method="POST">
+                <div clas="rating">
+                    <h3>Leave a rating</h3>
+                    <label for="rating1">1</label>
+                    <input type="radio" name="rating" id="rating1" value=1>
+                    <label for="rating2">2</label>
+                    <input type="radio" name="rating" id="rating2" value=2>
+                    <label for="rating3">3</label>
+                    <input type="radio" name="rating" id="rating3" value=3>
+                    <label for="rating4">4</label>
+                    <input type="radio" name="rating" id="rating4" value=4>
+                    <label for="rating5">5</label>
+                    <input type="radio" name="rating" id="rating5" value=5>
+                </div>
+                <label for="comment">Leave a comment</label>
+                <br>
+                <textarea name="comment" id="comment" cols="30" rows="10"></textarea> 
+
+                <button class="Button">Comment</button>
+            </form>
+            
+            
+            <% for(comment of comments){ %>
+            <div class="comment"> 
+                <div class="rating">
+                    <p>rating: <%=comment.rating%> </p>
+                </div>
+                <div class="commentMessage">
+                    <%=comment.comment%>
+                </div>
+            </div>
+            <%}  %>  
+            
+        </div>
+
+        
+
+
+        
     </main>
