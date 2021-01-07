@@ -1,19 +1,30 @@
+b{
+    font-weight: bold;
+}
+
 main{
     display: flex;
     flex-direction: row;
+    justify-content:center;
 }
 
 h1{
+    text-align: center;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.beerCard>div{
+div{
     margin:5px;
 }
 
 .beerCard{
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-width: 500px;
+    padding: 50px;
     margin:50px;
+    margin-right: 150px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -25,9 +36,16 @@ h1{
 
 
 .comments{
-    width:1000px;
+    
     height: 100px;
     flex: 1;
     
+    max-width: 500px; 
     
+    
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
 }
