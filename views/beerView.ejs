@@ -11,14 +11,19 @@
                 </div>
 
                 <% } %>
-
-                    <div class=beerStyle><b>Beer style: </b>
+                    <% if(beer.rating) {%>
+                        
+                    <div class="ratingAvg">
+                    <b>Rating:</b> <%=beer.rating%>
+                    </div>   
+                    <%  }%>  
+                    <div class="beerStyle"><b>Beer style: </b>
                         <%=beer.beerStyle%>
                     </div>
-                    <div class=beerLocation><b>Location: </b>
+                    <div class="beerLocation"><b>Location: </b>
                         <%=beer.location%>
                     </div>
-                    <div class=beerDescription><b>Description: </b>
+                    <div class="beerDescription"><b>Description: </b>
                         <%=beer.description%>
                     </div>
                     <div class="buttons">
@@ -77,6 +82,10 @@
                     <div class="commentMessage">
                         <%=comment.comment%>
                     </div>
+                    <form class="deleteForm" action="/beer/<%=beer._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                        <button class ="Button deleteButton">Delete</button>
+
+                    </form>
                 </div>
                 <%} %>
 

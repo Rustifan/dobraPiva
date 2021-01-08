@@ -61,12 +61,13 @@ p.fillMessage {
 }
 
 .comment>div {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .commentMessage {
     width: 100%;
     overflow-wrap: break-word;
+    
 }
 
 .rating {
@@ -101,6 +102,19 @@ h3 {
 }
 
 .commentForm>button {
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.deleteForm
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteButton{
+    background-color: rgb(240, 219, 219);
+    
     margin-left: 5px;
     margin-bottom: 10px;
 }

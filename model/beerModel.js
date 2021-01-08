@@ -24,6 +24,10 @@ const beerScheema = new Schema({
         filename: String,
         path: String,
         originalName: String
+    },
+    rating: {
+        type: Number,
+        required: true
     }
 });
 

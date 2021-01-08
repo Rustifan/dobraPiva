@@ -90,6 +90,7 @@ async function CreateBeer()
     beer.beerStyle = beerStyle;
     beer.description = description;
     beer.image = image;
+    beer.rating = 0;
     await beer.save();
     console.log("new beer created");
 }
