@@ -30,6 +30,7 @@ module.exports.beerMakePOST = catchAssync(async function(req, res)
         image = {path, filename, originalName};
         beer.image = image;
     }
+    beer.rating = 0;
     await beer.save();
     res.redirect("/beer");
 });

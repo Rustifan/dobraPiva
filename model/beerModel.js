@@ -36,7 +36,7 @@ beerScheema.post("remove", async (doc)=>{
     if(doc.image.filename)
     {
     
-       const comments = Comment.find({beer:doc});
+       const comments = Comment.find({beer: doc});
        
        await comments.remove();   
     
@@ -55,3 +55,4 @@ const Beer = mongoose.model("beer", beerScheema);
 
 
 module.exports = Beer;
+
