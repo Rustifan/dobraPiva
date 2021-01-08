@@ -5,16 +5,16 @@
         <form action="/beer/<%=beer._id%>/edit?_method=PUT" method="POST" novalidate>
             <div>
                 <label for="name">Beer name</label>
-                <input type="text" id="name" placeholder="ime" name="name" required value=<%=beer.name%>>
+                <input class="validate" type="text" id="name" placeholder="ime" name="name" required value=<%=beer.name%>>
             </div>
             <div>
                 <label for="beerStyle">beer style</label>
-                <input type="text" id="beerStyle" placeholder="beer style" name="beerStyle" required
+                <input class="validate" type="text" id="beerStyle" placeholder="beer style" name="beerStyle" required
                     value=<%=beer.beerStyle%> >
             </div>
             <div>
                 <label for="location">location</label>
-                <input type="text" id="location" placeholder="mjesto" name="location" required value=<%=beer.location%>
+                <input class="validate" type="text" id="location" placeholder="mjesto" name="location" required value=<%=beer.location%>
                 >
             </div>
             <div>

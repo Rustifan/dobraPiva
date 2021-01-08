@@ -1,5 +1,6 @@
 const mongooseConnect = require("../Core/mongoInit");
 const Beer = require("../model/beerModel");
+const Comment = require("../model/commentModel");
 
 mongooseConnect();
 
@@ -36,8 +37,14 @@ String.prototype.capitalize = function() {
 
 const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis euismod mi, ut varius dolor. Phasellus a tristique massa. Duis pharetra quam a nisi fringilla, ac laoreet nulla pretium. Sed tincidunt facilisis fringilla. Quisque ac est ut arcu maximus mollis. Suspendisse potenti. Duis in lorem ultrices, vulputate ex nec, luctus purus. Nulla molestie, massa sed luctus interdum, enim metus iaculis purus, mollis aliquet velit ante vel ex. Cras luctus vehicula diam, id sodales tellus luctus quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla aliquam risus nisl, sed vulputate dolor convallis nec. Pellentesque id turpis id augue consequat tincidunt nec sit amet dui. Curabitur ut ipsum porta, tempor ex et, sollicitudin dui. Nam et lacinia massa, vel ultrices sem.";
 
+let beerNum = 10;
 
-const beerNum = 100;
+if(process.argv[2])
+{
+    
+    beerNum = parseInt(process.argv[2]);
+}
+
 
 
 
@@ -45,14 +52,15 @@ const beerNum = 100;
 async function DeleteAll()
 {
     await Beer.deleteMany({});
+    await Comment.deleteMany({});
     console.log("Deleting all");
 
 }
 
 async function CreateBeer() 
 {
-    const nameIndex1 = Math.floor(Math.random() * names.length);
-    const nameIndex2 = Math.floor(Math.random() * names.length);
+    let nameIndex1 = Math.floor(Math.random() * names.length);
+    let nameIndex2 = Math.floor(Math.random() * names.length);
     if(nameIndex1 === nameIndex2)
     {
         nameIndex2++;

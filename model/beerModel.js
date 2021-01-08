@@ -27,6 +27,7 @@ const beerScheema = new Schema({
     }
 });
 
+
 beerScheema.post("remove", async (doc)=>{
     if(doc.image.filename)
     {

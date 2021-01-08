@@ -36,46 +36,57 @@
                         </form>
                     </div>
         </div>
-        <div class="card form">
 
-            <h2>Post Comment</h2>
-            <form action="/beer/<%=beer._id%>/comments" method="POST">
-                <div clas="rating">
-                    <h3>Leave a rating</h3>
-                    <label for="rating1">1</label>
-                    <input type="radio" name="rating" id="rating1" value=1>
-                    <label for="rating2">2</label>
-                    <input type="radio" name="rating" id="rating2" value=2>
-                    <label for="rating3">3</label>
-                    <input type="radio" name="rating" id="rating3" value=3>
-                    <label for="rating4">4</label>
-                    <input type="radio" name="rating" id="rating4" value=4>
-                    <label for="rating5">5</label>
-                    <input type="radio" name="rating" id="rating5" value=5>
-                </div>
-                <label for="comment">Leave a comment</label>
-                <br>
-                <textarea name="comment" id="comment" cols="30" rows="10"></textarea> 
+        <div class="commentSection">
+            <div class="card postComment">
 
-                <button class="Button">Comment</button>
-            </form>
-            
-            
-            <% for(comment of comments){ %>
-            <div class="comment"> 
-                <div class="rating">
-                    <p>rating: <%=comment.rating%> </p>
-                </div>
-                <div class="commentMessage">
-                    <%=comment.comment%>
-                </div>
+                <h2>Post a comment</h2>
+                <form class="validateForm commentForm" action="/beer/<%=beer._id%>/comments" method="POST" novalidate>
+                    <div class="ratingInput">
+                        <h3>Leave a rating:</h3>
+                        <label for="rating1">1</label>
+                        <input class="validate" type="radio" name="rating" id="rating1" value=1 required>
+                        <label for="rating2">2</label>
+                        <input class="validate" type="radio" name="rating" id="rating2" value=2 required>
+                        <label for="rating3">3</label>
+                        <input class="validate" type="radio" name="rating" id="rating3" value=3 required>
+                        <label for="rating4">4</label>
+                        <input class="validate" type="radio" name="rating" id="rating4" value=4 required>
+                        <label for="rating5">5</label>
+                        <input class="validate" type="radio" name="rating" id="rating5" value=5 required>
+                    </div>
+                    <div class=commentInput>
+                        <label for="comment">Leave a comment:</label>
+                        <br>
+                        <textarea class="validate" name="comment" id="comment" cols="30" rows="10" required></textarea>
+                    </div>
+                    <button class="Button">Comment</button>
+
+                    <p class="fillMessage">Please fill out missing information</p>
+
+                </form>
             </div>
-            <%}  %>  
-            
+
+
+            <% for(comment of comments){ %>
+                <div class="card comment">
+                    <div class="rating">
+                        <p>rating: <%=comment.rating%>
+                        </p>
+                    </div>
+                    <div class="commentMessage">
+                        <%=comment.comment%>
+                    </div>
+                </div>
+                <%} %>
+
         </div>
 
-        
 
 
-        
+
+
+
     </main>
+
+    <script src="/javascript/validateForm.js"></script>
