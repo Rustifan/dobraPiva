@@ -7,6 +7,7 @@ const controller = require("./controller/controller");
 const path = require("path");
 const beerRouter = require("./router/beerRouter");
 const commentRouter = require("./router/commentRouter");
+const userRouter = require("./router/userRouter");
 const methodOverride=require("method-override");
 const ExpressError = require("./errorManage/ExpressError"); 
 const errorHandle = require("./errorManage/errorHandle");
@@ -31,7 +32,10 @@ app.set("views", path.join(__dirname, "views"));
 const sessionConfig = {
     secret: "ZeldaDaBeast",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie : {
+        maxAge: 1000* 60 * 60 *24 * 7
+    },
 };
 app.use(expressSession(sessionConfig));
 app.use(express.static(path.join(__dirname, "public")));
@@ -39,13 +43,19 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(flash());
-app.use((req, res, next)=>{res.locals.err = req.flash("err"); next();});
+app.use((req, res, next)=>{
+    res.locals.err = req.flash("err"); 
+    res.locals.sucess = req.flash("sucess");
+    next();
+});
+
 
 
 //routes
 app.get("/", controller.home);
 app.use("/beer", beerRouter);
 app.use("/beer/:id/comments", paramFunction, commentRouter);
+app.use("/", userRouter);
 app.get("/*", (req, res)=>{throw(new ExpressError("Not Found 404", 404));});
 
 //error handeling

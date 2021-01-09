@@ -37,6 +37,7 @@ nav.navbar>a:hover {
 }
 
 .error {
+    white-space: pre-wrap;
     margin-top: 40px;
 }
 

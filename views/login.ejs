@@ -1,0 +1,22 @@
+<%-layout("./boilerplate/layout.ejs")%>
+<link rel="stylesheet" href="/css/form.css">
+
+    <main>
+        <h1>Login</h1>
+        <form class="validateForm" action="/login" method="POST" novalidate> 
+            <div class="username">
+                <label for="username">Username</label>
+                <input class="validate"  type="text" id="username" name="username" required>
+            </div>
+            <div class="password">
+                <label for="password">Password</label>
+                <input class="validate" type="password" id="password" name="password" required>
+            </div>
+           
+            <button class="Button">Login</button>
+            <br>
+            <p class="fillMessage">Please fill correct information</p>
+        </form>
+    </main>
+
+    <script src="/javascript/validateForm.js"></script>

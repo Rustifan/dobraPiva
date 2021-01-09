@@ -42,6 +42,10 @@ input, textarea, p.fillMessage{
    
 }
 
+input{
+    outline:none;
+}
+
 p.fillMessage
 {
     margin: auto;

@@ -18,6 +18,8 @@
     <nav class="navbar">
         <a href="/">Home</a>
         <a href="/beer">Beer</a>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
     </nav>
     <div class="error">
         <% if(err) {%>
@@ -25,7 +27,13 @@
                 <%= err %>
             </p>
             <% } %>
+            
     </div>
+    <% if(sucess) {%>
+        <p>
+            <%= sucess %>
+        </p>
+        <% } %>
 
     <%- body %>
 
