@@ -19,25 +19,43 @@
         <a href="/">Home</a>
         <a href="/beer">Beer</a>
         <a href="/register">Register</a>
-        <a href="/login">Login</a>
+        <% if(!userID){%>
+            <a href="/login">Login</a>
+            <%}else{%>
+                <a href="/logout">Logout</a>
+                <%}%>
     </nav>
-    <div class="error">
-        <% if(err) {%>
-            <p>
-                <%= err %>
-            </p>
-            <% } %>
-            
-    </div>
-    <% if(sucess) {%>
-        <p>
-            <%= sucess %>
-        </p>
-        <% } %>
 
-    <%- body %>
+    <% if(userID){%>
+
+        <div class="userInfo card">
+            <p>You are logged in as <b>
+                    <%=username%>
+                </b></p>
+        </div>
+        <%}%>
+
+            <% if(err.length) {%>
+
+                <div class="error">
+                    <p><%= err %></p>
+                    <p class="removeFlash">x</p>
 
 
+                </div>
+                <% } %>
+
+                    <% if(sucess.length) {%>
+                        <div class="sucess">
+                            <p><%= sucess %></p>
+                            <p class="removeFlash">x</p>
+                        </div>
+
+                        <% } %>
+                            <%- body %>
+
+<script src="/javascript/deleteMessage.js"></script>
 </body>
+
 
 </html>

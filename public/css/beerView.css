@@ -38,6 +38,7 @@ div {
     height: 100px;
     flex: 1;
     max-width: 500px;
+
 }
 
 .buttons {
@@ -55,9 +56,15 @@ p.fillMessage {
 
 .comment {
     max-width: 350px;
+    min-width: 250px;
     padding: 20px;
     margin-top: 0px;
     margin-bottom: 30px;
+}
+
+.commentUser>b{
+    font-size: large;
+    
 }
 
 .comment>div {

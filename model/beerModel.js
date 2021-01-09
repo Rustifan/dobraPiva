@@ -28,6 +28,11 @@ const beerScheema = new Schema({
     rating: {
         type: Number,
         required: true
+    },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     }
 });
 

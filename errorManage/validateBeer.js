@@ -11,8 +11,7 @@ module.exports = function(req, res, next)
         beerStyle: joi.string().required(),
         location: joi.string().required(),
         description: joi.string().required(),
-        image: joi.string()
-
+        image: joi.string(),
     });
 
     const {error, value} = schema.validate(beer);

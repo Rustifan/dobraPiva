@@ -15,6 +15,7 @@ const engine = require("ejs-mate");
 const expressSession = require("express-session");
 const flash = require("connect-flash");
 const paramFunction = require("./router/routerParamFunction");
+const setLocals = require("./middleware/setLocals");
 
 
 
@@ -43,12 +44,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(flash());
-app.use((req, res, next)=>{
-    res.locals.err = req.flash("err"); 
-    res.locals.sucess = req.flash("sucess");
-    next();
-});
-
+app.use(setLocals);
 
 
 //routes

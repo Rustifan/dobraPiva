@@ -20,7 +20,12 @@ const CommentScheema = new Schema({
     comment:{
         type: String,
         required: true
-    }
+    },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    }     
 })
 
 const Comment = mongoose.model("Comment", CommentScheema);

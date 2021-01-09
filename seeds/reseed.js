@@ -1,6 +1,8 @@
 const mongooseConnect = require("../Core/mongoInit");
 const Beer = require("../model/beerModel");
+const User = require("../model/userModle");
 const Comment = require("../model/commentModel");
+const hash = require("../Utils/hashPassword");
 
 mongooseConnect();
 
@@ -31,6 +33,8 @@ const images = ["https://besthqwallpapers.com/Uploads/8-2-2017/13407/thumb2-beer
 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDxezRmwkSe_ewLGcFjhspf3G1by_L60y0qg&usqp=CAU"
 ];
 
+
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1)
   }
@@ -53,8 +57,20 @@ async function DeleteAll()
 {
     await Beer.deleteMany({});
     await Comment.deleteMany({});
+    await User.deleteMany({});
     console.log("Deleting all");
 
+}
+
+let user = null;
+
+async function CreateUser()
+{
+    user = new User();
+    user.username = "rustifan";
+    user.email = "ja@gmail.com";
+    user.password = await hash.hash("1234", 12);
+    await user.save();
 }
 
 async function CreateBeer() 
@@ -91,6 +107,7 @@ async function CreateBeer()
     beer.description = description;
     beer.image = image;
     beer.rating = 0;
+    beer.user = user;
     await beer.save();
     console.log("new beer created");
 }
@@ -98,6 +115,7 @@ async function CreateBeer()
 async function Reseed()
 {
     await DeleteAll();
+    await CreateUser();
     for(let i = 0; i < beerNum; i++)
     {
         CreateBeer();

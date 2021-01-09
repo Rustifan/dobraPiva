@@ -9,4 +9,6 @@ router.post("/register",hashPassMid, controller.registerPOST);
 router.get("/login", controller.loginGET);
 router.post("/login", controller.loginPOST);
 
+router.get("/logout", controller.logout);
+
 module.exports = router;
