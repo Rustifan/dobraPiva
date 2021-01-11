@@ -10,7 +10,8 @@ module.exports.make = function(req, res, next)
     if(!req.session.userID)
     {
         const errorMsg = "you dont have permission to add new comment. You have to login first";
-        throw(new ExpressError(errorMsg, 401));
+        req.flash("err", errorMsg);
+        return res.redirect("/login");;
     }
     else
     {
@@ -23,10 +24,10 @@ module.exports.delete = catchAsync(async function(req, res, next)
     if(!req.session.userID)
     {
         const errorMessage = "you must login first";
-        throw(new ExpressError(errorMessage,401));
+        req.flash("err", errorMsg);
+        return res.redirect("/login");
     }
-    const commentID = req.params.commentID;
-    const user = req.session.userID;
+   
 
     if(req.session.userID == comment.user._id)
     {
@@ -35,7 +36,7 @@ module.exports.delete = catchAsync(async function(req, res, next)
     else
     {
         const errorMessage = "you dont have permission to delete this comment";
-        throw(new ExpressError(errorMessage,401));
+        throw(new ExpressError(errorMessage, 401));
     }
 
 })

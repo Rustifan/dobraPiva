@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 const mongooseConnect = require("../Core/mongoInit");
 const Beer = require("../model/beerModel");
 const User = require("../model/userModle");
 const Comment = require("../model/commentModel");
 const hash = require("../Utils/hashPassword");
+const getGeometry = require("../Utils/getGeoCoordinates");
 
 mongooseConnect();
 
@@ -11,9 +14,9 @@ const names = ["brzo", "dlakavo", "lijepo", "slatko", "bugarsko", "smrdeće", "c
 "ponosno", "sveto", "beskrajno", "mrkopaljsko", "mrko", "dugo", "dostojno", "pravedno", "otpjevano",
 "kokos", "žuto", "kvrgavo", "pokošeno", "ne diraj", "korisno", "isusovo", "buničko", "bolničko", "nosorog" ];
 
-const locations =["Split", "Zagreb", "Šibenik", "Benkovac", "Tisno", "Prvić Luka",
-"Prvić Šepurina", "Oklaj", "Vukovar", "Zaton", "Velika Gorica", "Dubrovnik", "Donji Miholjac", "Požega",
-"Zlarin", "Blato", "Crikvenica", "Niš"];
+const locations =["Split", "Zagreb", "Šibenik", "Benkovac", "Osijek" ,"Prvić Luka",
+"Prvić Šepurine", "Oklaj", "Vukovar", "Zaton", "Velika Gorica", "Dubrovnik", "Donji Miholjac", "Požega",
+ "Blato Korčula", "Crikvenica", "Niš"];
 
 const beerStyles = ["bohemiam lager", "porter", "lager", "IPA", "APA", "stout",
 "chocolate stout", "pilsner", "blonde ale", "dark lager", "hoppy lager", "wheat beer",
@@ -88,7 +91,12 @@ async function CreateBeer()
     const name = `${names[nameIndex1].capitalize()} ${names[nameIndex2]} pivo`;
 
     const locationIndex = Math.floor(Math.random() * locations.length);
-    const location = locations[locationIndex];
+    const locationName = locations[locationIndex];
+    const geometry = await getGeometry(locationName);
+    const location = {name : locationName, geometry};
+    
+
+
 
     const styleIndex = Math.floor(Math.random() * beerStyles.length);
     const beerStyle = beerStyles[styleIndex];

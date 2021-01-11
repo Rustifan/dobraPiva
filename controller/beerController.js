@@ -23,6 +23,8 @@ module.exports.beerMakeGET = function(req, res)
 
 module.exports.beerMakePOST = catchAssync(async function(req, res)
 {
+    
+    console.dir(req.body);
     const beer = new Beer(req.body);
     
     const user = await User.findById(req.session.userID);

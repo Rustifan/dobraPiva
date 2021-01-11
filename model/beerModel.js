@@ -13,8 +13,21 @@ const beerScheema = new Schema({
         required: true
     },
     location: {
-        type: String,
-        required: true
+        name: {
+            type: String,
+            required: true
+        },
+        geometry: {
+            type: {
+              type: String, 
+              enum: ['Point'], 
+              
+            },
+            coordinates: {
+              type: [Number],
+            }
+          }
+        
     },
     description: {
         type: String,

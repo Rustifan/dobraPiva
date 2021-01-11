@@ -16,7 +16,7 @@ const expressSession = require("express-session");
 const flash = require("connect-flash");
 const paramFunction = require("./router/routerParamFunction");
 const setLocals = require("./middleware/setLocals");
-
+const setOriginalUrl = require("./middleware/setOriginalUrl");
 
 
 //variables
@@ -48,11 +48,11 @@ app.use(setLocals);
 
 
 //routes
-app.get("/", controller.home);
+app.get("/",setOriginalUrl, controller.home);
 app.use("/beer", beerRouter);
 app.use("/beer/:id/comments", paramFunction, commentRouter);
 app.use("/", userRouter);
-app.get("/*", (req, res)=>{throw(new ExpressError("Not Found 404", 404));});
+app.get("/*", (req, res)=>{throw(new ExpressError("Reqested page is not found. Error 404", 404));});
 
 //error handeling
 
