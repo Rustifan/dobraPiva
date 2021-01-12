@@ -1,0 +1,13 @@
+Project roadmap:
+
+-fix redirecting
+-filter listing beer
+-split comments from rating(user can rate just one time)
+-Upgrade registering form
+-add admin
+-user settings
+-search comments by user
+-added beer pending. Admin needs to aprove.
+-add more security(mongo injection, helmet...)
+-css styling
+

@@ -31,9 +31,10 @@ main{
     
     align-self: center;
    
-    margin-bottom: 20px;
+    
 
 }
+
 
 .title > h1{
   font-size: 60px;
@@ -61,3 +62,17 @@ main{
   height: 100%;
 }
 
+.subTitle
+{
+  background-color: rgba(235, 198, 150,0.5);
+  padding: 20px;
+  align-self: center;
+  margin-bottom: 20px;
+  border-radius: 30%;
+}
+
+.subTitle>h2
+{
+  font-size: large;
+  font-weight: bold;
+}

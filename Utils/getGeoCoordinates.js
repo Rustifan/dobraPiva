@@ -40,14 +40,26 @@ function replaceCroatianChars(str)
     return newStr;
 }
 
+function randomNum(from, to)
+{
+    let num = Math.random();
+    num *= (to-from);
+    num = Math.floor(num);
+    num+=from;
+    return num;
+
+}
 
 
-async function  getGeoCoords(place)
+async function  getGeoCoords(place, inCroatia = true ,addRandomCoords=true)
 {
 
 
-    const location = replaceCroatianChars(place);
-    
+    let location = replaceCroatianChars(place);
+    if(inCroatia)
+    {
+        location = location + " Croatia";
+    }
 
     
 
@@ -61,8 +73,17 @@ async function  getGeoCoords(place)
         const data = await fetch(url);
         const json = await data.json();
         
-        const geometry = json.features[0].geometry;
+        let geometry = json.features[0].geometry;
         
+        if(addRandomCoords)
+        {
+            let coords = geometry.coordinates;
+            coords[0]+=(randomNum(-5,6)*0.0001);
+            coords[1]+= (randomNum(-5,6)*0.0001);
+            geometry.coordinates = coords;
+
+        }
+
 
         return geometry;        
     }

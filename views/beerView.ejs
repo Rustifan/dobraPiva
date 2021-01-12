@@ -3,7 +3,7 @@
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
-
+<link rel="stylesheet" href="/css/rating.css">
 
 <%if(beer){  %> 
     <script>const beerCoords = [<%=beer.location.geometry.coordinates%>] </script>
@@ -69,22 +69,31 @@
             <% if(userID) {%>
             <div class="card postComment">
 
-                <h2>Post a comment</h2>
+                <h2>Post a comment and leave a rating</h2>
                 <form class="validateForm commentForm" action="/beer/<%=beer._id%>/comments" method="POST" novalidate>
                     <div class="ratingInput">
                         <h3>Leave a rating:</h3>
                         <label for="rating1">1</label>
-                        <input class="validate" type="radio" name="rating" id="rating1" value=1 required>
+                        <input class="validate" type="radio" name="rating" id="rating1" value="1" required>
                         <label for="rating2">2</label>
-                        <input class="validate" type="radio" name="rating" id="rating2" value=2 required>
+                        <input class="validate" type="radio" name="rating" id="rating2" value="2" required>
                         <label for="rating3">3</label>
-                        <input class="validate" type="radio" name="rating" id="rating3" value=3 required>
+                        <input class="validate" type="radio" name="rating" id="rating3" value="3" required>
                         <label for="rating4">4</label>
-                        <input class="validate" type="radio" name="rating" id="rating4" value=4 required>
+                        <input class="validate" type="radio" name="rating" id="rating4" value="4" required>
                         <label for="rating5">5</label>
-                        <input class="validate" type="radio" name="rating" id="rating5" value=5 required>
+                        <input class="validate" type="radio" name="rating" id="rating5" value="5" required>
                     </div>
-                    <div class=commentInput>
+
+                    <div class = "rate">
+                        <div class="rate1"></div>    
+                        <div class="rate2"></div>    
+                        <div class="rate3"></div>    
+                        <div class="rate4"></div>    
+                        <div class="rate5"></div>    
+                    </div>
+
+                    <div class="commentInput">
                         <label for="comment">Leave a comment:</label>
                         <br>
                         <textarea class="validate" name="comment" id="comment" cols="30" rows="10" required></textarea>
@@ -102,13 +111,23 @@
             
             <% for(comment of comments){ %>
                 <div class="card comment">
+                    
+                    <div class="rating">
+                        <%for(let i = 0; i < comment.rating; i++){ %>
+                            <div class="fullBeer"></div>
+                        
+                            <% }%>
+                        <%for(let i = 0; i < 5-comment.rating; i++){%>
+                            <div class="emptyBeer"></div>
+                            <% }%>
+
+                    </div>
+                    
+                    
                     <div class="commentUser">
                         <b><%=comment.user.username%>:</b>
                     </div>
-                    <div class="rating">
-                        <p>rating: <%=comment.rating%>
-                        </p>
-                    </div>
+                    
                     <div class="commentMessage">
                         <%=comment.comment%>
                     </div>
@@ -132,5 +151,6 @@
 
     </main>
 
+    <script src="/javascript/rating.js"></script>
     <script src="/javascript/validateForm.js"></script>
     <script src="/javascript/beerViewMap.js"></script>
