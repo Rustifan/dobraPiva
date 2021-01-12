@@ -15,8 +15,9 @@ const names = ["brzo", "dlakavo", "lijepo", "slatko", "bugarsko", "smrdeće", "c
 "kokos", "žuto", "kvrgavo", "pokošeno", "ne diraj", "korisno", "isusovo", "buničko", "bolničko", "nosorog" ];
 
 const locations =["Split", "Zagreb", "Šibenik", "Benkovac", "Osijek" ,"Prvić Luka",
-"Prvić Šepurine", "Oklaj", "Vukovar", "Zaton", "Velika Gorica", "Dubrovnik", "Donji Miholjac", "Požega",
- "Blato Korčula", "Crikvenica", "Niš"];
+"Prvić Šepurine","Drniš", "Knin", "Vukovar", "Zaton", "Velika Gorica", "Dubrovnik", "Donji Miholjac", "Požega",
+ "Blato Korčula", "Crikvenica", "Niš", "Biograd", "Beograd", "Valjevo", "Prag", "Novi Marof", "Gospić", "Slunj", "Bugojno",
+"Velika gorica", "Zaprešić", "Vodice", "Metković", "Pazin", "Rijeka", "Bol Brač", "Kaprije", "Pula", "Motovun"];
 
 const beerStyles = ["bohemiam lager", "porter", "lager", "IPA", "APA", "stout",
 "chocolate stout", "pilsner", "blonde ale", "dark lager", "hoppy lager", "wheat beer",

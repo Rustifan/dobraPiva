@@ -51,10 +51,9 @@ module.exports.beerView = catchAssync(async function(req, res)
 
     const beer = await findID(id, Beer);
     
-    
-    
     const comments = await Comment.find({beer}).populate("user");
     const title = "beerView";
+    
     res.render(title, {beer, title, comments});
 
 });
@@ -88,8 +87,31 @@ module.exports.beerDELETE = catchAssync(async function(req, res)
     const id = req.params.id;
     const beer = await findID(id, Beer);
     
-    beer.remove();
-    
+    await beer.remove();
+
     res.redirect("/beer");
+    
 });
 
+module.exports.beerJson = catchAssync(async function(req, res)
+{
+    const geoObj = {
+        type : "featureCollection",
+        features: []
+    }
+
+
+    const beers = await Beer.find();
+    for(let beer of beers)
+    {
+        const obj = {type : "feature", geometry : beer.location.geometry, properties : {
+            name: beer.name,
+            id: beer._id,
+            rating: beer.rating
+        }};
+        geoObj.features.push(obj);
+    }
+     
+    const geoJson = JSON.stringify(geoObj);
+    res.send(geoJson);
+});

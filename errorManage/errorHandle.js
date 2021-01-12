@@ -1,6 +1,7 @@
 module.exports = function(err, req, res, next)
 {
-
+    console.log(req.originalUrl);
+    
     let originalUrl = "/";
     if(req.session.originalUrl)
     {

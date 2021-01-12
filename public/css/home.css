@@ -4,7 +4,7 @@ body, html{
 }
 
 body{
-  background-image: url("/image/background.jpg");  
+  background-image: url("/image/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: color;
@@ -12,11 +12,11 @@ body{
 }
 
 main{
-  
+  margin-top:50px;
   display: flex;
-  
-  height: 80%;
-  flex-direction: row-reverse;
+  height:max-content;
+  flex-direction: column;
+  height: 100%;
   
 }
 
@@ -24,16 +24,14 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(146, 127, 91, 0.459);
-    border-radius: 50%;
-    text-align: center;
-    width: 40em;
-    height: 14em;
-    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    position: relative;
-    top: 5em;
-    left: -5%;
     
+    text-align: center;
+    width: 40%;
+    height: 30%;
+    
+    align-self: center;
+   
+    margin-bottom: 20px;
 
 }
 
@@ -44,5 +42,22 @@ main{
   
 }
 
+.mapContainer
+{
 
+  
+  align-self: center;
+  width: 80%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.map
+{
+
+  border-radius: 20%;
+ 
+  width: 100%;
+  height: 100%;
+}
 

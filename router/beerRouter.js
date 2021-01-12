@@ -10,15 +10,14 @@ const getGeoLocationMid = require("../middleware/getGeoLocationMid");
 
 router.get("/", controller.beerHome);
 
-
+router.get("/json", controller.beerJson);
 router.get("/make",authorizeBeer.make, controller.beerMakeGET);
 
 router.post("/make",authorizeBeer.make, upload.single("image"), validateBeer, getGeoLocationMid, controller.beerMakePOST);
 
 router.get("/:id/edit", authorizeBeer.edit,  controller.beerEditGET);
 
-router.put("/:id/edit",authorizeBeer.edit, validateBeer, controller.beerEditPUT);
-
+router.put("/:id/edit",authorizeBeer.edit, validateBeer,getGeoLocationMid, controller.beerEditPUT);
 router.delete("/:id",authorizeBeer.edit, controller.beerDELETE);
 
 router.get("/:id",setOriginalUrl, controller.beerView);

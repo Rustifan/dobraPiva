@@ -159,3 +159,19 @@ p.removeFlash
     width: auto;
     position: fixed;
 }
+
+.marker {
+    display: block;
+    border: none;
+    
+    cursor: pointer;
+    padding: 0;
+    background-image:url("/image/beer.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    }
+
+#map{
+    display: block;
+}

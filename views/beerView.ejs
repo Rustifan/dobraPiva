@@ -4,20 +4,24 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
 
-<script>const beerCoords = [<%=beer.location.geometry.coordinates%>] </script>
-    
+
+<%if(beer){  %> 
+    <script>const beerCoords = [<%=beer.location.geometry.coordinates%>] </script>
+<%}%> 
 
 
 
     <link rel="stylesheet" href="/css/beerView.css">
     <main>
+        <section>
+        
         <div class="card beerCard">
             <h1>
                 <%=beer.name%>
             </h1>
             <% if(beer.image.path){ %>
                 <div>
-                    <img class="picture" src=<%=beer.image.path%> alt=<%=beer.image.filename%>>
+                    <img class="picture" src="<%=beer.image.path%>" alt="<%=beer.image.filename%>">
                 </div>
 
                 <% } %>
@@ -54,10 +58,10 @@
                         </form>
                     </div>
                     <% } %>
-        <div id='map' style='width: 400px; height: 300px;'></div>
 
         </div>
-
+        <div class="card map" id='map'></div>
+        </section>  
     
     
 
