@@ -2,16 +2,50 @@
 
     <link rel="stylesheet" href="/css/beer.css">
 
+    
+
+
     <main class="BeerList">
+        <form action="/beer/find">
+            <label for="find">Find a beer</label>
+            <input type="text" id="find" name="q">
+            <label for="category">category</label>
+            <select name="category" id="category">
+                <option value="name">name</option>
+                <option value="beerStyle">beer Style</option>
+                <option value="location">location</option>
+            </select>
+            <button>Find</button>
+
+        </form>
+        <div class="list">
+            
+        </div>
         <div class="list">
             <h1>Beer list</h1>
-
+            <div class="beerTitle">
+            <a class = "beerTitle">
+                <span class="number"></span>
+                <span class="beerName">name</span>
+                <span class="beerRating">rating</span>
+                <span class="beerStyle">style</span>
+            </a>
+        </div>
+            <% let i = 1; %> 
             <% for (let beer of beers){ %>
-                <div>
+                <div class="beerLinkDiv">
+                    <a class="beerLink" href="/beer/<%=beer._id%>">
+                    <span class="number"><%=i%>.</span>
                     
-                    <a href="/beer/<%=beer._id%>"><span><%=beer.name%> </span></a>
-                        
-                    
+                    <span class="beerName"><%=beer.name%> </span>
+                    <%if(beer.rating){%> 
+                    <span class="beerRating"><%=beer.rating%> </span>
+                    <%}else{%>
+                    <span class="beerRating">no rating</span>
+                    <%} %>  
+                    <span class="beerStyle"><%=beer.beerStyle%></span>
+                </a>
+                <% i++; %> 
                 </div>
 
 

@@ -2,6 +2,7 @@ const User = require("../model/userModle");
 const catchAsync = require("../errorManage/catchAssync");
 const hashPassword = require("../Utils/hashPassword");
 const ExpressError = require("../errorManage/ExpressError");
+const session = require("express-session");
 
 module.exports.registerGET = catchAsync(async function(req, res)
 {   
@@ -49,7 +50,14 @@ module.exports.loginPOST = catchAsync(async function(req, res)
     req.session.userID = user._id;
     req.session.username = user.username;
     req.flash("sucess", "you sucessfully logged in as "+ user.username);
-    res.redirect("/beer");
+    if(req.session.originalUrl)
+    {
+        res.redirect(req.session.originalUrl)
+    }
+    else{
+        res.redirect("/beer");
+
+    }
 })
 
 module.exports.logout = function(req, res)

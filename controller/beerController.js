@@ -6,7 +6,7 @@ const findID = require("../Utils/findID");
 
 module.exports.beerHome = catchAssync(async function(req, res)
 {
-    const beers = await Beer.find();
+    const beers = await Beer.find().sort({rating:-1});
     
     const title = "beer";
     
@@ -21,10 +21,46 @@ module.exports.beerMakeGET = function(req, res)
     
 }
 
+module.exports.beerFind = catchAssync(async function(req, res){
+    let search = req.query.q;
+    const category = req.query.category;
+    const title = "beer";
+    if(!search)
+    {
+        search = "";
+    }
+    let beers = null;
+
+    switch(category)
+    {
+        case "location":
+        beers = await Beer.find({"location.name" : {$regex: search, $options:'i'}});
+        res.render(title, {beers, title});
+        break;
+        case "beerStyle":
+        beers = await Beer.find({beerStyle: {$regex: search, $options:'i'}});
+        res.render(title, {beers, title});
+        break;
+        default:
+        beers = await Beer.find({name: {$regex: search, $options:'i'}});
+        res.render(title, {beers, title});
+        break;
+        
+        
+
+
+        
+    }
+    
+    
+
+})
+
+
 module.exports.beerMakePOST = catchAssync(async function(req, res)
 {
     
-    console.dir(req.body);
+    
     const beer = new Beer(req.body);
     
     const user = await User.findById(req.session.userID);

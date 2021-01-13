@@ -9,6 +9,7 @@ const getGeoLocationMid = require("../middleware/getGeoLocationMid");
 
 
 router.get("/", controller.beerHome);
+router.get("/find", controller.beerFind);
 
 router.get("/json", controller.beerJson);
 router.get("/make",authorizeBeer.make, controller.beerMakeGET);

@@ -26,11 +26,11 @@ h1{
     margin-bottom: 50px;;
 }
 
-.list>div{
+.beerLinkDiv{
     
     height:40px;
     display:flex;
-    align-content: space-between;
+    
     background-color:ghostwhite;
     margin-bottom: 10px;
     font-size: large;
@@ -38,15 +38,36 @@ h1{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition:50ms;
 }
+.beerName
+{
+    width: 200px;
+}
 
-.list>div:hover{
+.beerRating
+{
+    padding-left: 40px;
+    width:200px;
+    margin-left: 50%;
+    
+}
+.beerStyle{
+    width:200px;
+    
+}
+
+.number{
+    width:50px;
+    ;
+}
+
+.beerLinkDiv:hover{
     transform: translateY(-2px);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     
 }
 
-.list>div>a
+.beerLinkDiv>a
 {
     
     width: 100%;
@@ -57,7 +78,26 @@ h1{
     transition: 50ms;
 }
 
-.list>div>a:hover{
+.beerTitle
+{
+    
+    width: 100%;
+    height: 100%; 
+    text-decoration: none;
+    display: flex;
+    color: black;
+    margin-bottom: 10px;
+    
+
+}
+
+.beerTitle>section{
+    height:100%;
+    margin-left:10px;
+    align-self: center;
+}
+
+.beerLinkDiv>a:hover{
    
     color:red;
 }

@@ -2,6 +2,7 @@ const ExpressError = require("./ExpressError");
 const Beer = require("../model/beerModel");
 const User = require("../model/userModle");
 const catchAsync = require("./catchAssync");
+const session = require("express-session");
 
 
 module.exports.make = function(req, res, next)
@@ -10,6 +11,7 @@ module.exports.make = function(req, res, next)
     {
         const errorMsg = "you dont have permission to add new beer. You have to login first";
         req.flash("err", errorMsg);
+        req.session.originalUrl = req.originalUrl;
         return res.redirect("/login");
     }
     else
@@ -24,6 +26,8 @@ module.exports.edit = catchAsync(async function(req, res, next)
     {
         const errorMessage = "you must login first";
         req.flash("err", errorMessage);
+        req.session.originalUrl = req.originalUrl;
+        
         return res.redirect("/login");
         
     }
