@@ -25,9 +25,12 @@ h1{
     font-size: 60px;
     margin-bottom: 50px;;
 }
-
+.beerLocation
+{
+    width:50px;
+}
 .beerLinkDiv{
-    
+    width:850px;
     height:40px;
     display:flex;
     
@@ -57,7 +60,7 @@ h1{
 
 .number{
     width:50px;
-    ;
+    
 }
 
 .beerLinkDiv:hover{
@@ -81,7 +84,7 @@ h1{
 .beerTitle
 {
     
-    width: 100%;
+    width: 850px;
     height: 100%; 
     text-decoration: none;
     display: flex;
@@ -92,6 +95,7 @@ h1{
 }
 
 .beerTitle>section{
+
     height:100%;
     margin-left:10px;
     align-self: center;
@@ -149,3 +153,4 @@ h1{
     margin-left:10px;
     align-self: center;
 }
+
