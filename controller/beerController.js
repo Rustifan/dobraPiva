@@ -8,6 +8,35 @@ const ExpressError = require("../errorManage/ExpressError");
 
 module.exports.beerHome = catchAssync(async function(req, res)
 {
+    let sortCategory = req.query.sortCategory;
+    let sortOrder = parseInt(req.query.sortOrder);
+    
+    switch(sortCategory)
+    {
+        case "0":
+        sortCategory = "name";
+        break;
+        case "1":
+        sortCategory = "rating";
+        break;
+        case "2":
+        sortCategory = "beerStyle";
+        break;
+        case "3":
+        sortCategory = "location";
+        break;
+        case undefined:
+        sortCategory = "name"
+        break;
+        default:
+        throw(new ExpressError("Wrong sorting category",404));
+    }
+    if(!sortOrder)
+    {
+        sortOrder = "1";
+    }
+
+    
     let page = 1;
     if(req.query.page){page= req.query.page;}
     const beerNumber = await Beer.countDocuments({});
@@ -20,12 +49,12 @@ module.exports.beerHome = catchAssync(async function(req, res)
     
     
     
-    let beers = await Beer.find().sort({rating: -1})
+    let beers = await Beer.find().sort([[sortCategory, sortOrder]])
         .limit(beerPerPage).skip(beerPerPage*(page-1));
     const href = "/beer?";
     const title = "beer";
-    const passObject = {beers, title, sortCategory: "rating", 
-        sortOrder: "-1", page, beerPerPage, numOfPages, href}
+    const passObject = {beers, title, sortCategory, 
+        sortOrder, page, beerPerPage, numOfPages}
     
     res.render(title, passObject);
 });
@@ -107,15 +136,12 @@ module.exports.beerFind = catchAssync(async function(req, res){
     let numOfPages = null;
     if(beerNumber%beerPerPage==0){numOfPages=beerNumber/beerPerPage;}
     else{numOfPages=Math.floor(beerNumber/beerPerPage)+1;}
-    let href = req.originalUrl+"&";
-    if(req.originalUrl.indexOf("&page")!==-1)
-    {
-        href = req.originalUrl.substr(0, req.originalUrl.indexOf("&page"))+"&";
-    }
+    
+    
 
     
     
-    res.render(title, {beers, title, sortCategory, sortOrder,href, numOfPages, page, beerPerPage});
+    res.render(title, {beers, title, sortCategory, sortOrder, numOfPages, page, beerPerPage});
 
     
     

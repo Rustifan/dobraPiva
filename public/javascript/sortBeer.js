@@ -39,43 +39,14 @@ for (let i = 0; i < beerTitle.length; i++) {
             sortOrder = 1;
             
         }
-
-        if (window.location.href.indexOf("/find") === -1) 
-        {
-            const indexOfPage = window.location.href.indexOf("?page");
-            if(indexOfPage !==-1)
-            {
-                const pageSubstr = window.location.href.substr(indexOfPage,window.location.href.lenght);
-                let newHref = window.location.href.substr(0, pageSubstr);
-                
-                newHref+="beer/find?q=&category"+"&sortCategory=" + sortCategoryIndex +
-                "&sortOrder=" + sortOrder+"&"+pageSubstr.substr(1, pageSubstr.length);
-                
-                window.location.href = newHref;
-            }
-            else{
-                window.location.href += "/find?q=&category"+"&sortCategory=" + sortCategoryIndex +
-            "&sortOrder=" + sortOrder;
-            }
-            
-
-            
-        }
-        else {
-            const index = window.location.href.indexOf("&sortCategory=");
-            const indexOfPage = window.location.href.indexOf("&page");
-            const pageString = window.location.href.substr(indexOfPage, window.location.href.length);
-
-            if (index !== -1) {
-                const newString = window.location.href.substr(0, index);
-                window.location.href = newString + "&sortCategory=" + sortCategoryIndex +
-                    "&sortOrder=" + sortOrder;
-            }
-            else {
-                window.location.href += "&sortCategory=" + sortCategoryIndex +
-                    "&sortOrder=" + sortOrder;
-            }
-        }
+        const href = new URL(window.location.href);
+        const searchParams = href.searchParams;
+        searchParams.set("sortOrder",sortOrder);
+        searchParams.set("sortCategory", sortCategoryIndex);
+        window.location.search = searchParams;
+        
+        
+        
 
 
 

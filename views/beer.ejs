@@ -4,7 +4,7 @@
     
     <script>let sortCategory = "<%=sortCategory%>";</script>
     <script>let sortOrder = <%=sortOrder%> </script>
-    
+    <script>const lastPage = <%=numOfPages%></script>
 
 
     <main class="BeerList">
@@ -59,29 +59,40 @@
                 <a href="/beer/make"><span>Add new beer</span></a>
             </div>
             <div class="pages">
+                <%if(parseInt(page)!=1){%>
+                <a class="first" href="/">first</a>
+                <%}%>
+
                 <%if(parseInt(page)-1>0){%>
-                <a href="<%=href%>page=<%=(parseInt(page)-1)%>">before</a>    
+                <a class="before" href="/">before</a>    
                 <%}%>
                   
-                <%for(let i = 0; i<5; i++){%>
+                <%for(let i = -3; i<4; i++){%>
+                    <%if(i+parseInt(page)>0 && i+parseInt(page)<=numOfPages){%>
                     <%if(i===0){%>
                         <b><%=page%></b>
                     <%}else{%>
                     
                         <%if(parseInt(page)+i<parseInt(numOfPages)){%>
-                        <a href="<%=href%>page=<%=(parseInt(page)+i)%>"><%=parseInt(page)+i%></a>
+                        <a class="page<%=parseInt(page)+i%>" href="/"><%=parseInt(page)+i%></a>
                         <%}%>
+                    <%}%>
+
                     <%}%>
                     
                     
                 <%}%>
-                <%if(parseInt(page)+1<parseInt(numOfPages)){%>
-                <a href="<%=href%>page=<%=(parseInt(page)+1)%>">next</a>    
+                <%if(parseInt(page)+1<=parseInt(numOfPages)){%>
+                <a class="next" href="/">next</a>    
                 <%}%>
-                <a href="<%=href%>page=<%=parseInt(numOfPages)%>">last</a> 
+                <%if(parseInt(page)!=numOfPages){%>
+                <a class="last" href="/">last</a> 
+                <%}%>
+
             </div>
                     
         
     </main>
     
     <script src="/javascript/sortBeer.js"></script>
+    <script src="/javascript/changePage.js"></script>
