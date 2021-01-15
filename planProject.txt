@@ -1,7 +1,5 @@
 Project roadmap:
 
-
--split comments from rating(user can rate just one time)
 -Upgrade registering form
 -edit picture, add picture
 -add admin

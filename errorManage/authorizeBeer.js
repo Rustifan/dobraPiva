@@ -28,6 +28,7 @@ module.exports.edit = catchAsync(async function(req, res, next)
         req.flash("err", errorMessage);
         req.session.originalUrl = req.originalUrl;
         
+        
         return res.redirect("/login");
         
     }

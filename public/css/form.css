@@ -55,19 +55,27 @@ p.fillMessage
     display:none;
 }
 
+p.repeatPassMessage
+{
+    margin: auto;
+    margin-left:20%;
+    font-size: 100%;
+    color:red;
+    display:none;
+}
 
 label{
     flex:1;
 }
 
-input[type=text]
+input[type=text], input[type=password], input[type=email]
 {
     border:1px black solid;
     border-radius: 2px;
 
 }
 
-input[type=text]:focus, textarea:focus
+input[type=text]:focus, textarea:focus,input[type=password]:focus, input[type=email]:focus
 {
    
     outline:none;

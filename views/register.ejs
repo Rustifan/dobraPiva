@@ -10,7 +10,11 @@
             </div>
             <div class="password">
                 <label for="password">Password</label>
-                <input class="validate" type="password" id="password" name="password" required>
+                <input class="validate password" type="password" id="password" name="password" required>
+            </div>
+            <div class="repeatPassword">
+                <label for="repeatPassword">Repeat password</label>
+                <input type="password" class="repeatPassword validate" id="repeatPassword" required>
             </div>
             <div class="email">
                 <label for="email">Email</label>
@@ -19,7 +23,9 @@
             <button class="Button">Register</button>
             <br>
             <p class="fillMessage">Please fill correct information</p>
+            <p class="repeatPassMessage">passwords are not same</p>
         </form>
     </main>
 
     <script src="/javascript/validateForm.js"></script>
+    <script src="/javascript/repeatPassValidation.js"></script>
