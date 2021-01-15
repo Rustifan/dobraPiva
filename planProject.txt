@@ -1,9 +1,9 @@
 Project roadmap:
 
--fix redirecting
--filter listing beer
+
 -split comments from rating(user can rate just one time)
 -Upgrade registering form
+-edit picture, add picture
 -add admin
 -user settings
 -search comments by user

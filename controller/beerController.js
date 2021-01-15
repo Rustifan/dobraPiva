@@ -5,6 +5,7 @@ const catchAssync = require("../errorManage/catchAssync");
 const findID = require("../Utils/findID");
 const beerSort = require("../model/beerSortBy");
 const ExpressError = require("../errorManage/ExpressError");
+const Rating = require("../model/ratingModel");
 
 module.exports.beerHome = catchAssync(async function(req, res)
 {
@@ -176,13 +177,21 @@ module.exports.beerMakePOST = catchAssync(async function(req, res)
 module.exports.beerView = catchAssync(async function(req, res)
 {
     const id = req.params.id;
-
     const beer = await findID(id, Beer);
-    
     const comments = await Comment.find({beer}).populate("user");
     const title = "beerView";
+    let userRating = 0;
+    if(req.session.userID)
+    {
+        const rating = await Rating.findOne({user: req.session.userID, beer});
+        if(rating)
+        {
+            userRating = rating;
+        }
+    }
+
     
-    res.render(title, {beer, title, comments});
+    res.render(title, {beer, title, comments, userRating});
 
 });
 

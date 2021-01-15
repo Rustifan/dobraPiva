@@ -67,10 +67,11 @@
 
         <div class="commentSection">
             <% if(userID) {%>
-            <div class="card postComment">
-
-                <h2>Post a comment and leave a rating</h2>
-                <form class="validateForm commentForm" action="/beer/<%=beer._id%>/comments" method="POST" novalidate>
+            <div class="card giveRating">
+                <%if(userRating===0){%>
+                
+                <form class="ratingForm" action="/beer/<%=beer._id%>/ratings" method="POST">
+                    <h2>Rate this beer</h2>
                     <div class="ratingInput">
                         <h3>Leave a rating:</h3>
                         <label for="rating1">1</label>
@@ -91,7 +92,37 @@
                         <div class="rate3"></div>    
                         <div class="rate4"></div>    
                         <div class="rate5"></div>    
+                    </div>    
+                    
+                </form>
+                <%}else{%>
+                    <div class="rated">
+                        <p>You rated this beer:</p>
+                        <div class="rating">
+                        <%for(let i = 0; i < userRating.rating; i++){ %>
+                            <div class="fullBeer"></div>
+                        
+                            <% }%>
+                        <%for(let i = 0; i < 5-userRating.rating; i++){%>
+                            <div class="emptyBeer"></div>
+                            <% }%>
+
                     </div>
+                    </div>
+
+                <%}%>
+            </div>
+
+
+
+            <div class="card postComment">
+
+                <h2>Post a comment</h2>
+                
+                
+
+                <form class="validateForm commentForm" action="/beer/<%=beer._id%>/comments" method="POST" novalidate>
+                    
 
                     <div class="commentInput">
                         <label for="comment">Leave a comment:</label>
@@ -112,16 +143,7 @@
             <% for(comment of comments){ %>
                 <div class="card comment">
                     
-                    <div class="rating">
-                        <%for(let i = 0; i < comment.rating; i++){ %>
-                            <div class="fullBeer"></div>
-                        
-                            <% }%>
-                        <%for(let i = 0; i < 5-comment.rating; i++){%>
-                            <div class="emptyBeer"></div>
-                            <% }%>
-
-                    </div>
+                    
                     
                     
                     <div class="commentUser">

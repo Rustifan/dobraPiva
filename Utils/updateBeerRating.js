@@ -1,18 +1,18 @@
-const { func } = require("joi");
 const Beer = require("../model/beerModel");
 const Comment = require("../model/commentModel");
+const Rating = require("../model/ratingModel");
 
-function calculateAvgRating(comments) {
+function calculateAvgRating(ratings) {
     
-    if(comments.length)
+    if(ratings.length)
     {
         let added = 0; 
 
-        for(let comment of comments)
+        for(let rating of ratings)
         {
-            added+=comment.rating; 
+            added+=rating.rating; 
         }
-        const result = added/(comments.length);
+        const result = added/(ratings.length);
         
         return result;
     }
@@ -25,8 +25,9 @@ function calculateAvgRating(comments) {
 
 module.exports = async function(beer) {
     
-    const comments = await Comment.find({beer});
-    const newRating = calculateAvgRating(comments);
+    const ratings = await Rating.find({beer});
+    console.dir(ratings);
+    const newRating = calculateAvgRating(ratings);
     beer.rating = newRating.toFixed(2);
     
     await beer.save();

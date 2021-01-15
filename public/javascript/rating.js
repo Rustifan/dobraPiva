@@ -1,7 +1,7 @@
 const ratings = document.querySelectorAll(".rate>div");
 const rateForm = document.querySelector(".rate");
 const radioInputs = document.querySelectorAll("input[type=radio]");
-
+const ratingForm = document.querySelector(".ratingForm");
 
 let clicked = 0;
 
@@ -45,6 +45,7 @@ if(rateForm)
         }
         rateForm.style.border = "none";
 
+        ratingForm.submit();
 
     })
 

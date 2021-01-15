@@ -8,13 +8,13 @@ const User = require("../model/userModle");
 module.exports.POST = catchAssync(async function(req, res)
 {
     const commentMsg = req.body.comment;
-    const rating = req.body.rating;
+    
     const beerID = req.routerParams.id;
     const beer = await Beer.findById(beerID);
     const user = await User.findById(req.session.userID);
-    const comment = new Comment({beer, rating, comment:commentMsg, user});
+    const comment = new Comment({beer, comment:commentMsg, user});
     await comment.save();
-    await updateAvgRating(beer);
+    
     res.redirect("/beer/"+beerID);
 });
 
@@ -24,7 +24,7 @@ module.exports.DELETE = catchAssync(async function(req, res)
     const beer = await Beer.findById(beerID);
     const commentID = req.params.commentID;
     await Comment.findByIdAndDelete(commentID);
-    await updateAvgRating(beer);
+
     res.redirect("/beer/"+beerID);
 
 })
