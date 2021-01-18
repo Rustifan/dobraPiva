@@ -4,9 +4,6 @@ const inputs = document.querySelectorAll(".validate");
 const errorMessage = document.querySelector("p.fillMessage");
 const ratingInput = document.querySelector(".rate");
 
-
-
-
 if(form)
 {
     form.addEventListener("submit", (event) => {

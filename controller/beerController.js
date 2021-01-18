@@ -161,13 +161,17 @@ module.exports.beerMakePOST = catchAssync(async function(req, res)
 
     beer.user = user;
 
-    if(req.file)
+    if(req.files.length)
     {
-        const path = req.file.path;
-        const filename = req.file.filename;
-        const originalName = req.file.originalname;
-        image = {path, filename, originalName};
-        beer.image = image;
+        for(let file of req.files)
+        {
+            const path = file.path;
+            const filename = file.filename;
+            const originalName = file.originalname;
+            image = {path, filename, originalName};
+            beer.image.push(image);
+        }
+        
     }
     beer.rating = 0;
     await beer.save();
@@ -190,7 +194,6 @@ module.exports.beerView = catchAssync(async function(req, res)
         }
     }
 
-    
     res.render(title, {beer, title, comments, userRating});
 
 });

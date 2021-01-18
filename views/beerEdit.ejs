@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/css/form.css">
     <main>
         <h1>Edit beer</h1>
-        <form action="/beer/<%=beer._id%>/edit?_method=PUT" method="POST" novalidate>
+        <form class="validateForm" action="/beer/<%=beer._id%>/edit?_method=PUT" method="POST" novalidate>
             <div>
                 <label for="name">Beer name</label>
                 <input class="validate" type="text" id="name" placeholder="ime" name="name" required value=<%=beer.name%>>

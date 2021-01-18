@@ -114,7 +114,7 @@ async function CreateBeer()
     beer.location = location;
     beer.beerStyle = beerStyle;
     beer.description = description;
-    beer.image = image;
+    beer.image.push(image); 
     beer.rating = 0;
     beer.user = user;
     await beer.save();

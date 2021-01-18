@@ -33,11 +33,11 @@ const beerScheema = new Schema({
         type: String,
         required: true
     },
-    image: {
+    image: [{
         filename: String,
         path: String,
         originalName: String
-    },
+    }],
     rating: {
         type: Number,
         required: true
@@ -51,22 +51,33 @@ const beerScheema = new Schema({
 
 
 beerScheema.post("remove", async (doc)=>{
-    if(doc.image.filename)
+    
+    const comments = Comment.find({beer: doc});
+       
+    await comments.remove();  
+    if(doc.image.length)
     {
     
-       const comments = Comment.find({beer: doc});
-       
-       await comments.remove();   
-    
-       await cloudinary.uploader.destroy(doc.image.filename, (err, res )=>{
+        
+        
+       for(let img of doc.image)
+       {
+           console.log("image: "+img);
+           await cloudinary.uploader.destroy(img.filename, (err, res )=>{
+        
             
-            if(err)
-            {
-                console.dir(res);
+                if(err)
+                {
+                    console.log("error: " + err);
+                    console.log("res: " + res);
+                }
                 
-            }    
+                
+             
             
         })
+       }
+       
     }
 })
 const Beer = mongoose.model("beer", beerScheema);

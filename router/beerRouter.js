@@ -14,7 +14,7 @@ router.get("/find", controller.beerFind);
 router.get("/json", controller.beerJson);
 router.get("/make",authorizeBeer.make, controller.beerMakeGET);
 
-router.post("/make",authorizeBeer.make, upload.single("image"), validateBeer, getGeoLocationMid, controller.beerMakePOST);
+router.post("/make",authorizeBeer.make, upload.array("image"), validateBeer, getGeoLocationMid, controller.beerMakePOST);
 
 router.get("/:id/edit", authorizeBeer.edit,  controller.beerEditGET);
 

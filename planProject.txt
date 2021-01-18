@@ -1,6 +1,6 @@
 Project roadmap:
 
--Upgrade registering form
+
 -edit picture, add picture
 -add admin
 -user settings

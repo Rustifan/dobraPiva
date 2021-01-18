@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/css/form.css">
     <main>
         <h1>Add new beer</h1>
-        <form novalidate action="/beer/make" method="POST" enctype="multipart/form-data">
+        <form class ="validateForm" novalidate action="/beer/make" method="POST" enctype="multipart/form-data">
             <div>
                 <label for="name">Beer name</label>
                 <input class="validate" type="text" id="name" placeholder="name*" name="name" required>
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <label for="img">upload image</label>
-                <input type="file" name="image" id="img">
+                <input type="file" name="image" id="img" multiple>
             </div>
             <div>
                 <button>Send</button>
