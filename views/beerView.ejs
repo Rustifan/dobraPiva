@@ -21,12 +21,18 @@
                         </h1>
                         <% if(beer.image.length){ %>
                             <div class="images">
+                                
+
                                 <%for(let image of beer.image){%>
-                                    <div>
+                                    <div class="image">
                                         <img class="picture" src="<%=image.path%>" alt="<%=image.filename%>">
                                     </div>
 
                                     <%}%>
+                                    <%if(beer.image.length > 1){%>
+                                    <div class="leftArrow" onclick="moveLeft()">&lt;</div>
+                                    <div class="rightArrow" onClick="moveRight()">&gt;</div>
+                                <%}%>
                             </div>
                             <% } %>
                                 <% if(beer.rating) {%>
@@ -189,7 +195,7 @@
 
 
             </main>
-
+            <script src="/javascript/images.js"></script>
             <script src="/javascript/rating.js"></script>
             <script src="/javascript/validateForm.js"></script>
             <script src="/javascript/beerViewMap.js"></script>

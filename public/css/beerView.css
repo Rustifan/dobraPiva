@@ -21,7 +21,7 @@ div {
 .beerCard {
     background-color: whitesmoke;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 500px;
+    width: 500px;
     padding: 50px;
     
     margin-right: 50px;
@@ -30,9 +30,7 @@ div {
     flex: 1;
 }
 
-.picture {
-    width: 100%;
-}
+
 
 .comments {
     height: 100px;
@@ -143,4 +141,66 @@ h3 {
     max-width: 500px;
     height: 400px;
     align-self: center;
+}
+
+
+.images{
+    margin: 0;
+    position: relative;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    overflow: hidden;
+   
+    height: 400px;
+}
+
+
+
+
+.image{
+    
+   
+    margin: 0;
+    position:absolute;
+    width: 100%;
+    max-height: 100%;
+    display:none;
+    flex-direction: row;
+    
+    
+    overflow: hidden;
+}
+
+.picture {
+    width:100%;
+   
+    
+}
+
+.leftArrow, .rightArrow{
+    position: absolute;
+    font-size: 70px;
+    top: 20%;
+    background-color: rgba(245, 245, 245,0.4);
+    color:rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: none;
+    
+}
+
+.leftArrow:hover, .rightArrow:hover{
+    cursor: pointer;
+    background-color: rgba(245, 245, 245,1);
+    color:rgba(0, 0, 0, 1);
+}
+.leftArrow{
+    left:0px;
+}
+
+.rightArrow{
+    right: 0px;
 }
