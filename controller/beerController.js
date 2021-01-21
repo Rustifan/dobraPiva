@@ -1,13 +1,15 @@
 const Beer = require("../model/beerModel")
 const Comment = require("../model/commentModel");
 const User = require("../model/userModle");
-const catchAssync = require("../errorManage/catchAssync");
+const catchAsync = require("../errorManage/catchAssync");
 const findID = require("../Utils/findID");
 const beerSort = require("../model/beerSortBy");
 const ExpressError = require("../errorManage/ExpressError");
 const Rating = require("../model/ratingModel");
+const cloudinary = require("../Utils/imgUploadConfig").cloudinary;
 
-module.exports.beerHome = catchAssync(async function(req, res)
+
+module.exports.beerHome = catchAsync(async function(req, res)
 {
     let sortCategory = req.query.sortCategory;
     let sortOrder = parseInt(req.query.sortOrder);
@@ -68,7 +70,7 @@ module.exports.beerMakeGET = function(req, res)
     
 }
 
-module.exports.beerFind = catchAssync(async function(req, res){
+module.exports.beerFind = catchAsync(async function(req, res){
     let search = req.query.q;
     let sortCategory = req.query.sortCategory;
     let sortOrder = parseInt(req.query.sortOrder);
@@ -150,7 +152,7 @@ module.exports.beerFind = catchAssync(async function(req, res){
 })
 
 
-module.exports.beerMakePOST = catchAssync(async function(req, res)
+module.exports.beerMakePOST = catchAsync(async function(req, res)
 {
     
     
@@ -178,7 +180,7 @@ module.exports.beerMakePOST = catchAssync(async function(req, res)
     res.redirect("/beer");
 });
 
-module.exports.beerView = catchAssync(async function(req, res)
+module.exports.beerView = catchAsync(async function(req, res)
 {
     const id = req.params.id;
     const beer = await findID(id, Beer);
@@ -198,7 +200,7 @@ module.exports.beerView = catchAssync(async function(req, res)
 
 });
 
-module.exports.beerEditGET = catchAssync(async function(req, res)
+module.exports.beerEditGET = catchAsync(async function(req, res)
 {
     const id = req.params.id;
     const beer = await findID(id, Beer);
@@ -208,7 +210,7 @@ module.exports.beerEditGET = catchAssync(async function(req, res)
     res.render(title, {beer, title});
 });
 
-module.exports.beerEditPUT = catchAssync(async function(req, res)
+module.exports.beerEditPUT = catchAsync(async function(req, res)
 {
     const id = req.params.id;
     const beer = await findID(id, Beer);
@@ -222,7 +224,7 @@ module.exports.beerEditPUT = catchAssync(async function(req, res)
     res.redirect("/beer");
 });
 
-module.exports.beerDELETE = catchAssync(async function(req, res)
+module.exports.beerDELETE = catchAsync(async function(req, res)
 {
     const id = req.params.id;
     const beer = await findID(id, Beer);
@@ -233,7 +235,7 @@ module.exports.beerDELETE = catchAssync(async function(req, res)
     
 });
 
-module.exports.beerJson = catchAssync(async function(req, res)
+module.exports.beerJson = catchAsync(async function(req, res)
 {
     const geoObj = {
         type : "featureCollection",
@@ -254,4 +256,70 @@ module.exports.beerJson = catchAssync(async function(req, res)
      
     const geoJson = JSON.stringify(geoObj);
     res.send(geoJson);
+});
+
+module.exports.imagesGET = catchAsync(async function(req, res)
+{
+    const id = req.params.id;
+    const beer = await findID(id, Beer);
+    const images = beer.image;
+
+    
+    
+    const title = "editImages";
+    res.render(title,{title, beer, images});
+});
+
+module.exports.imagesDELETE = catchAsync(async function(req, res)
+{
+    const checked = req.body.checked;
+    const beer = await Beer.findById(req.params.id);
+
+    let images = beer.image;
+    if(checked)
+    {
+        for(let i = checked.length-1; i >=0; i--)
+        {
+            const index = parseInt(checked[i]);
+            await cloudinary.uploader.destroy(beer.image[index].filename, (err, res )=>{
+            if(err)
+            {
+                console.log("error deleting image from cloudinary: ");
+                console.log(res);
+            }
+            })
+
+            images.splice(index, 1);
+        }
+        await beer.save();
+    }
+    else{
+        req.flash("err", "you must check at least one image");
+    }
+    
+    res.redirect(`/beer/${req.params.id}/images`);
+});
+
+module.exports.imagePOST = catchAsync(async function (req, res)
+{
+    const beer = await Beer.findById(req.params.id);
+
+    if(req.files.length)
+    {
+        for(let file of req.files)
+        {
+            const path = file.path;
+            const filename = file.filename;
+            const originalName = file.originalname;
+            image = {path, filename, originalName};
+            beer.image.push(image);
+        }
+        
+    }else{
+        req.flash("err","error uploading images");
+    }
+    await beer.save();
+    res.redirect(`/beer/${req.params.id}/images`);
+
+    
 });

@@ -16,6 +16,7 @@ h1 {
 
 div {
     margin: 5px;
+    overflow-wrap: break-word;
 }
 
 .beerCard {
@@ -42,6 +43,7 @@ div {
 .buttons {
     display: flex;
     align-items: center;
+
 }
 
 p.fillMessage {
@@ -121,10 +123,19 @@ h3 {
     
 }
 
-.deleteForm
+.buttons{
+    position: relative;
+}
+form.deleteBeer
 {
+    left: 85%;
+    position:absolute;
     display: flex;
     justify-content: flex-end;
+    
+}
+form.deleteBeer>button{
+    background-color:  rgb(240, 219, 219);
 }
 
 .deleteButton{
@@ -181,7 +192,7 @@ h3 {
 .leftArrow, .rightArrow{
     position: absolute;
     font-size: 70px;
-    top: 20%;
+    top: 42%;
     background-color: rgba(245, 245, 245,0.4);
     color:rgba(0, 0, 0, 0.4);
     text-align: center;
@@ -189,6 +200,7 @@ h3 {
     height: 70px;
     border-radius: 50%;
     display: none;
+    user-select: none;
     
 }
 

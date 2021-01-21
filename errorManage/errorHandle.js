@@ -7,7 +7,7 @@ module.exports = function(err, req, res, next)
     {
        originalUrl = req.session.originalUrl; 
     }
-
+    
     if(err.status)
     {
         req.flash("err", err.message);

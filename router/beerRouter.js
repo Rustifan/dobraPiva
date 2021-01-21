@@ -12,13 +12,19 @@ router.get("/", controller.beerHome);
 router.get("/find", controller.beerFind);
 
 router.get("/json", controller.beerJson);
-router.get("/make",authorizeBeer.make, controller.beerMakeGET);
+router.get("/make", authorizeBeer.make, controller.beerMakeGET);
 
-router.post("/make",authorizeBeer.make, upload.array("image"), validateBeer, getGeoLocationMid, controller.beerMakePOST);
+router.post("/make", authorizeBeer.make, upload.array("image"), validateBeer, getGeoLocationMid, controller.beerMakePOST);
 
 router.get("/:id/edit", authorizeBeer.edit,  controller.beerEditGET);
 
-router.put("/:id/edit",authorizeBeer.edit, validateBeer,getGeoLocationMid, controller.beerEditPUT);
+router.put("/:id/edit", authorizeBeer.edit, validateBeer,getGeoLocationMid, controller.beerEditPUT);
+
+router.get("/:id/images", authorizeBeer.edit, controller.imagesGET);
+router.post("/:id/images", authorizeBeer.edit, upload.array("image"), controller.imagePOST);
+router.delete("/:id/images",authorizeBeer.edit, controller.imagesDELETE);
+
+
 router.delete("/:id",authorizeBeer.edit, controller.beerDELETE);
 
 router.get("/:id",setOriginalUrl, controller.beerView);
