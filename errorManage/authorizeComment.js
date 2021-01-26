@@ -29,7 +29,7 @@ module.exports.delete = catchAsync(async function(req, res, next)
     }
    
 
-    if(req.session.userID == comment.user._id)
+    if(req.session.userID == comment.user._id || req.session.isAdmin)
     {
         next();
     }

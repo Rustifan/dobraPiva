@@ -70,11 +70,20 @@ let user = null;
 
 async function CreateUser()
 {
+    const admin = new User();
+    admin.username = "Močni Prijo";
+    admin.email = "mocanlik@gmail.com"
+    admin.password = await hash.hash("321",12);
+    admin.isAdmin = true;
+    await admin.save();
+    
     user = new User();
     user.username = "rustifan";
     user.email = "ja@gmail.com";
     user.password = await hash.hash("1234", 12);
+    user.isAdmin = false;
     await user.save();
+
 }
 
 async function CreateBeer() 

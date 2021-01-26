@@ -1,7 +1,5 @@
 Project roadmap:
 
-
--edit picture, add picture
 -add admin
 -user settings
 -search comments by user

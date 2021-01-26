@@ -1,0 +1,20 @@
+<%-layout("/boilerplate/layout.ejs")%>
+<link rel="stylesheet" href="/css/users.css">
+
+<h1>Users</h1>
+
+<section class="userList">
+    <div class="user template">
+        <span class="username"><b>username</b></span>
+        <span class="email"><b>email</b></span>
+        
+    </div>
+    <%for(let user of users){%>
+        <div class="user">
+            <span class="username"><%=user.username%></span>
+            <span class="email"><a href="mailto: <%=user.email%>"><%=user.email%></a></span>
+            <span class="admin"><%if(user.isAdmin){%><b>admin</b><%}%></span>
+        </div>
+    <%}%> 
+</section>
+

@@ -5,6 +5,10 @@ const hashPassMid = require("../Utils/hashPassword").hashPassMid;
 const setOriginalUrl = require("../middleware/setOriginalUrl");
 const userExist = require("../middleware/userExists");
 
+
+
+router.get("/users", controller.usersGET);
+
 router.get("/register", controller.registerGET);
 router.post("/register",userExist,hashPassMid, controller.registerPOST);
 
