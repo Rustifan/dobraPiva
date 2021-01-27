@@ -54,7 +54,7 @@ module.exports.beerHome = catchAsync(async function(req, res)
     
     let beers = await Beer.find().sort([[sortCategory, sortOrder]])
         .limit(beerPerPage).skip(beerPerPage*(page-1));
-    const href = "/beer?";
+    
     const title = "beer";
     const passObject = {beers, title, sortCategory, 
         sortOrder, page, beerPerPage, numOfPages}
@@ -207,6 +207,7 @@ module.exports.beerEditGET = catchAsync(async function(req, res)
 
     const title = "beerEdit";
     
+    
     res.render(title, {beer, title});
 });
 
@@ -216,7 +217,7 @@ module.exports.beerEditPUT = catchAsync(async function(req, res)
     const beer = await findID(id, Beer);
 
     beer.name = req.body.name;
-    beer.beerSyle = req.body.beerSyle;
+    beer.beerStyle = req.body.beerStyle;
     beer.location = req.body.location;
     beer.description = req.body.description;
 

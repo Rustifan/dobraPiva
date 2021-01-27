@@ -34,6 +34,11 @@ for (let i = 0; i < beerTitle.length; i++) {
         if (sortCategoryIndex === i) {
             sortOrder = -sortOrder;
         }
+        else if(i===1)
+        {
+            sortCategoryIndex = i;
+            sortOrder = -1;
+        }
         else {
             sortCategoryIndex = i;
             sortOrder = 1;

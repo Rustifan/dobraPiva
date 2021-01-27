@@ -75,6 +75,8 @@ async function CreateUser()
     admin.email = "mocanlik@gmail.com"
     admin.password = await hash.hash("321",12);
     admin.isAdmin = true;
+    admin.lastTimeActive = Date();
+    admin.numberOfComments = 0;
     await admin.save();
     
     user = new User();
@@ -82,6 +84,9 @@ async function CreateUser()
     user.email = "ja@gmail.com";
     user.password = await hash.hash("1234", 12);
     user.isAdmin = false;
+    user.lastTimeActive = Date();
+    user.numberOfComments = 0;
+
     await user.save();
 
 }

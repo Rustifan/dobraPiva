@@ -38,7 +38,7 @@ module.exports.edit = catchAsync(async function(req, res, next)
 
     if(req.session.userID == beer.user._id || req.session.isAdmin)
     {
-        console.dir(req.session); ///////////
+        
         next();
     }
     else

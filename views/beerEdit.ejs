@@ -1,21 +1,22 @@
 <%-layout("/boilerplate/layout.ejs") %>
     <link rel="stylesheet" href="/css/form.css">
+
     <main>
         <h1>Edit beer</h1>
         <form class="validateForm" action="/beer/<%=beer._id%>/edit?_method=PUT" method="POST" novalidate>
             <div>
                 <label for="name">Beer name</label>
-                <input class="validate" type="text" id="name" placeholder="ime" name="name" required value=<%=beer.name%>>
+                <input class="validate" type="text" id="name" placeholder="ime" name="name" required value="<%=beer.name%>">
+                
             </div>
             <div>
                 <label for="beerStyle">beer style</label>
                 <input class="validate" type="text" id="beerStyle" placeholder="beer style" name="beerStyle" required
-                    value=<%=beer.beerStyle%> >
+                    value="<%=beer.beerStyle%>">
             </div>
             <div>
                 <label for="location">location</label>
-                <input class="validate" type="text" id="location" placeholder="mjesto" name="location" required value=<%=beer.location.name%>
-                >
+                <input class="validate" type="text" id="location" placeholder="mjesto" name="location" required value="<%=beer.location.name%>">
             </div>
             <div>
                 <label for="description">description</label>
@@ -26,6 +27,8 @@
                 <button>Edit</button>
                 <p class="fillMessage">Please fill out missing information</p>
             </div>
+        </form>
+
     </main>
 
     <script src="/javascript/validateForm.js"></script>

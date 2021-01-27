@@ -12,6 +12,8 @@ module.exports.POST = catchAssync(async function(req, res)
     const beerID = req.routerParams.id;
     const beer = await Beer.findById(beerID);
     const user = await User.findById(req.session.userID);
+    user.numberOfComments++;
+    await user.save();
     const comment = new Comment({beer, comment:commentMsg, user});
     await comment.save();
     
@@ -21,9 +23,14 @@ module.exports.POST = catchAssync(async function(req, res)
 module.exports.DELETE = catchAssync(async function(req, res)
 {
     const beerID = req.routerParams.id;
-    const beer = await Beer.findById(beerID);
+
     const commentID = req.params.commentID;
-    await Comment.findByIdAndDelete(commentID);
+    const comment = await Comment.findById(commentID);
+    const user = await User.findById(comment.user);
+    user.numberOfComments--;
+    await user.save();
+    
+    await comment.deleteOne();
 
     res.redirect("/beer/"+beerID);
 

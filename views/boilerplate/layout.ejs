@@ -26,7 +26,8 @@
             <a href="/login">Login</a>
             <%}else{%>
                 <a href="/logout">Logout</a>
-                <%}%>
+                <a href="/users/<%=userID%>">user settings</a>
+            <%}%>
     </nav>
 
     <% if(userID){%>

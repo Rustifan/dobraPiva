@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "start nodemon index.js && start chrome http://localhost:3000 && code dobraPiva.code-workspace"
+    "start": "start nodemon index.js && code dobraPiva.code-workspace && start chrome http://localhost:3000"
   },
   "repository": {
     "type": "git",

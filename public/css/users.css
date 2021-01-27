@@ -13,6 +13,7 @@ h1{
 .user{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 30px;
     margin:10px;
@@ -27,14 +28,60 @@ h1{
 }
 
 .user>span{
-    
+   
     margin-right: 20px;
-    width: 200px;
+    width: 300px;
     display: inline-block;
 }
 
-.admin{
-    position: absolute;
-    left: 95%;
+.user>span.admin{
+    width: 60px;
 }
 
+.clickSort>p{
+    width: fit-content;
+}
+
+.clickSort>p:hover{
+    cursor: pointer;
+}
+
+.userForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.userForm>input{
+    height:25px;
+    padding: 0px;
+}
+
+.userForm>button{
+    padding:5px;
+    margin-left: 20px;
+    border: none;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    
+}
+
+.userForm>button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    color: red;
+}
+
+.pages{
+    display: flex;
+    width:fit-content;
+    margin-left:45%;
+    margin-top: 40px;
+}
+
+.pages>a, .pages>b{
+    margin-right: 5px;
+}

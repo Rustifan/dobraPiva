@@ -1,0 +1,31 @@
+<%-layout("/boilerplate/layout.ejs")%>
+ 
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/editUser.css">
+
+<main>
+    <h1><%=user.username%> settings</h1>
+
+    <form class="validateForm" method="POST" action="/users/<%=user._id%>?_method=PUT" novalidate>
+        <div>
+            <label for="username">username</label>
+            <input class="validate" type="text" id="username" placeholder="username" name="username" value="<%=user.username%>" required>
+        </div>
+        <div>
+            <label for="email">email</label>
+            <input type="email" class="validate" id="email" placeholder="email" name="email" value="<%=user.email%>" required>
+        </div>
+        <div class="anchorButton">
+            <a href="/users/<%=user._id%>/password"><p>change password</p></a>
+        </div>
+        <button class="Button saveChanges">Save changes</button>
+
+    <p class="fillMessage">Please fill out missing information</p>
+
+    </form>
+
+</main>
+
+
+
+<script src="/javascript/validateForm.js"></script>

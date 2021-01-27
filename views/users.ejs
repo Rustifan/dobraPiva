@@ -1,20 +1,69 @@
 <%-layout("/boilerplate/layout.ejs")%>
 <link rel="stylesheet" href="/css/users.css">
 
+<script>const numOfPages=<%=numOfPages%> </script>
+
 <h1>Users</h1>
+
+<form class="userForm" action="/users">
+<label for="serachUser" style="display: none;"></label>
+<input id="searchUser" type="text" placeholder="Search user" name="search">
+<button>Search</button>
+</form>
 
 <section class="userList">
     <div class="user template">
-        <span class="username"><b>username</b></span>
-        <span class="email"><b>email</b></span>
-        
+        <span class="username clickSort"><p>username</p></span>
+        <span class="lastTimeActive clickSort"><p>last time active</p></span>
+        <span class="numberOfComments clickSort"><p>number of comments</p></span>
+        <span class="email">email</span>
+
+        <span class="admin"></span>
     </div>
     <%for(let user of users){%>
         <div class="user">
             <span class="username"><%=user.username%></span>
+            <span class="lastTimeActive"><%=user.getDate()%></span>
+            <span class="numberOfComments"><%=user.numberOfComments%></span>
             <span class="email"><a href="mailto: <%=user.email%>"><%=user.email%></a></span>
+
             <span class="admin"><%if(user.isAdmin){%><b>admin</b><%}%></span>
         </div>
     <%}%> 
 </section>
 
+<div class="pages">
+    <%if(parseInt(page)!=1){%>
+    <a class="first" href="/">first</a>
+    <%}%>
+
+    <%if(parseInt(page)-1>0){%>
+    <a class="before" href="/">before</a>    
+    <%}%>
+      
+    <%for(let i = -3; i<4; i++){%>
+        <%if(i+parseInt(page)>0 && i+parseInt(page)<=numOfPages){%>
+        <%if(i===0){%>
+            <b><%=page%></b>
+        <%}else{%>
+        
+            <%if(parseInt(page)+i<parseInt(numOfPages)){%>
+            <a class="page<%=parseInt(page)+i%>" href="/"><%=parseInt(page)+i%></a>
+            <%}%>
+        <%}%>
+
+        <%}%>
+        
+        
+    <%}%>
+    <%if(parseInt(page)+1<=parseInt(numOfPages)){%>
+    <a class="next" href="/">next</a>    
+    <%}%>
+    <%if(parseInt(page)<numOfPages-1){%>
+    <a class="last" href="/">last</a> 
+    <%}%>
+
+</div>
+        
+
+<script src="/javascript/usersSort.js"></script>

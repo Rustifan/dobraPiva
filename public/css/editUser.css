@@ -1,0 +1,18 @@
+.changePass{
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding:5px;
+    font-size: 70%;
+}
+
+.saveChanges{
+    margin-top:40px;    
+}
+
+.anchorButton{
+    margin-left: 20px;
+}
+.anchorButton>a>p{
+    font-size: small;
+}
