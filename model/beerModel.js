@@ -46,6 +46,10 @@ const beerScheema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true
+    },
+    pending:{
+        type: Boolean,
+        required: true
     }
 });
 

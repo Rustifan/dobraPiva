@@ -131,6 +131,7 @@ async function CreateBeer()
     beer.image.push(image); 
     beer.rating = 0;
     beer.user = user;
+    beer.pending = false;
     await beer.save();
     console.log("new beer created");
 }

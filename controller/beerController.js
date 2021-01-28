@@ -52,7 +52,7 @@ module.exports.beerHome = catchAsync(async function(req, res)
     
     
     
-    let beers = await Beer.find().sort([[sortCategory, sortOrder]])
+    let beers = await Beer.find({pending: false}).sort([[sortCategory, sortOrder]])
         .limit(beerPerPage).skip(beerPerPage*(page-1));
     
     const title = "beer";
@@ -120,18 +120,18 @@ module.exports.beerFind = catchAsync(async function(req, res){
     switch(category)
     {
         case "location":
-        beerNumber = await Beer.countDocuments({"location.name" : {$regex: search, $options:'i'}});
-        beers = await Beer.find({"location.name" : {$regex: search, $options:'i'}})
+        beerNumber = await Beer.countDocuments({pending: false,"location.name" : {$regex: search, $options:'i'}});
+        beers = await Beer.find({pending: false, "location.name" : {$regex: search, $options:'i'}})
         .sort([[sortCategory,sortOrder]]).limit(beerPerPage).skip(beerPerPage*(page-1));
         break;
         case "beerStyle":
-        beerNumber = await Beer.countDocuments({beerStyle : {$regex: search, $options:'i'}});
+        beerNumber = await Beer.countDocuments({pending: false, beerStyle : {$regex: search, $options:'i'}});
         beers = await Beer.find({beerStyle: {$regex: search, $options:'i'}})
         .sort([[sortCategory,sortOrder]]).limit(beerPerPage).skip(beerPerPage*(page-1));
         break;
         default:
-        beerNumber = await Beer.countDocuments({name : {$regex: search, $options:'i'}});
-        beers = await Beer.find({name: {$regex: search, $options:'i'}})
+        beerNumber = await Beer.countDocuments({pending: false, name : {$regex: search, $options:'i'}});
+        beers = await Beer.find({pending: false, name: {$regex: search, $options:'i'}})
         .sort([[sortCategory,sortOrder]]).limit(beerPerPage).skip(beerPerPage*(page-1));
         break;
     }
@@ -157,7 +157,15 @@ module.exports.beerMakePOST = catchAsync(async function(req, res)
     
     
     const beer = new Beer(req.body);
-    
+    if(req.session.isAdmin)
+    {
+        beer.pending = false;
+    }
+    else
+    {
+        beer.pending = true;
+    }
+
     const user = await User.findById(req.session.userID);
     
 
@@ -177,6 +185,14 @@ module.exports.beerMakePOST = catchAsync(async function(req, res)
     }
     beer.rating = 0;
     await beer.save();
+    if(beer.pending)
+    {
+        req.flash("sucess", "you sucessfully added a new beer. Your beer is pending for aproval.")
+    }
+    else
+    {
+        req.flash("sucess", "you sucessfully added a new beer");
+    }
     res.redirect("/beer");
 });
 
@@ -222,7 +238,7 @@ module.exports.beerEditPUT = catchAsync(async function(req, res)
     beer.description = req.body.description;
 
     await beer.save();
-    res.redirect("/beer");
+    res.redirect(req.session.originalUrl);
 });
 
 module.exports.beerDELETE = catchAsync(async function(req, res)
@@ -244,7 +260,7 @@ module.exports.beerJson = catchAsync(async function(req, res)
     }
 
 
-    const beers = await Beer.find();
+    const beers = await Beer.find({pending: false});
     for(let beer of beers)
     {
         const obj = {type : "feature", geometry : beer.location.geometry, properties : {
@@ -322,5 +338,83 @@ module.exports.imagePOST = catchAsync(async function (req, res)
     await beer.save();
     res.redirect(`/beer/${req.params.id}/images`);
 
+    
+});
+
+module.exports.beerPending = catchAsync(async function(req, res)
+{
+   
+    let sortCategory = req.query.sortCategory;
+    let sortOrder = parseInt(req.query.sortOrder);
+    
+    switch(sortCategory)
+    {
+        case "0":
+        sortCategory = "name";
+        break;
+        case "1":
+        sortCategory = "rating";
+        break;
+        case "2":
+        sortCategory = "beerStyle";
+        break;
+        case "3":
+        sortCategory = "location";
+        break;
+        case undefined:
+        sortCategory = "name"
+        break;
+        default:
+        throw(new ExpressError("Wrong sorting category",404));
+    }
+    if(!sortOrder)
+    {
+        sortOrder = "1";
+    }
+
+    
+    let page = 1;
+    if(req.query.page){page= req.query.page;}
+    const beerNumber = await Beer.countDocuments({});
+    const beerPerPage = 10;
+    let numOfPages = null;
+    
+    
+    if(beerNumber%beerPerPage==0){numOfPages=beerNumber/beerPerPage;}
+    else{numOfPages=Math.floor(beerNumber/beerPerPage)+1;}
+    
+    
+    
+    let beers = await Beer.find({pending: true}).sort([[sortCategory, sortOrder]])
+        .limit(beerPerPage).skip(beerPerPage*(page-1));
+    
+        const title = "beerPending";
+    
+    const passObject = {beers, title, sortCategory, 
+        sortOrder, page, beerPerPage, numOfPages}
+    
+   res.render(title, passObject);
+   
+   
+
+    
+});
+
+
+
+module.exports.approvePUT= catchAsync(async function(req, res){
+    
+    let pending = false;
+    if(req.query.pending)
+    {
+        pending = true;
+    }
+
+    const beerID = req.params.id;
+    const beer = await Beer.findById(beerID);
+    beer.pending = pending;
+    await beer.save();
+
+    res.redirect(req.session.originalUrl);
     
 });

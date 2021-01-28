@@ -134,6 +134,13 @@ form.deleteBeer
     justify-content: flex-end;
     
 }
+
+form.approve{
+    left: calc(85% - 100px);
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+}
 form.deleteBeer>button{
     background-color:  rgb(240, 219, 219);
 }

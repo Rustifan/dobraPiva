@@ -20,6 +20,10 @@
     <nav class="navbar">
         <a href="/">Home</a>
         <a href="/beer">Beer</a>
+        <% if(isAdmin){%>
+            <a href="/beer/pending">pending beer</a>
+        <%}%>
+        
         <a href="/users">Users</a>
         <a href="/register">Register</a>
         <% if(!userID){%>

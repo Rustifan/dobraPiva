@@ -64,9 +64,26 @@
                                                         <p>images</p>
                                                     </a>
                                                 </div>
-                                            
-                                            
+                                                
+                                                <%if(isAdmin){%>
+                                                
+                                                <%if(beer.pending){%>
+                                                <form action="/beer/<%=beer._id%>/approve?_method=PUT" class="approve" method="POST">
+                                                    <button class="Button pendingButton">
+                                                        <p>Approve</p>
+                                                    </button>
+                                                </form>
+                                                <%}else{%>
+                                                <form action="/beer/<%=beer._id%>/approve?_method=PUT&pending=true" class="approve" method="POST">
+                                                    <button class="Button pendingButton">
+                                                        <p>to pending</p>
+                                                    </button>
+                                                </form>
+                                                <%}%>
+                                                <%}%>
 
+
+                                                
                                                 <form class="deleteForm deleteBeer" action="/beer/<%=beer._id%>?_method=DELETE"
                                                     method="POST">
                                                     <button class="Button">
@@ -184,6 +201,7 @@
                                         <form class="deleteForm"
                                             action="/beer/<%=beer._id%>/comments/<%=comment._id%>?_method=DELETE"
                                             method="POST">
+                                            
                                             <button class="Button deleteButton">Delete</button>
 
                                         </form>

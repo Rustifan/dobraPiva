@@ -1,7 +1,5 @@
 Project roadmap:
 
-
--added beer pending. Admin needs to aprove.
 -beer chat
 -forgoten password
 -add more security(mongo injection, helmet...)
