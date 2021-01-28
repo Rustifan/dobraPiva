@@ -34,6 +34,15 @@ h1{
     display: inline-block;
 }
 
+.numberOfComments>a{
+    text-decoration: none;
+    color: blue;
+}
+
+.numberOfComments>a:visited{
+    color:blue;
+}
+
 .user>span.admin{
     width: 60px;
 }
@@ -85,3 +94,4 @@ h1{
 .pages>a, .pages>b{
     margin-right: 5px;
 }
+

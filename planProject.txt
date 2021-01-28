@@ -1,9 +1,9 @@
 Project roadmap:
 
--add admin
--user settings
--search comments by user
+
 -added beer pending. Admin needs to aprove.
+-beer chat
+-forgoten password
 -add more security(mongo injection, helmet...)
 -css styling
 

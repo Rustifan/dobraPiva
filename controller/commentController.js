@@ -15,6 +15,8 @@ module.exports.POST = catchAssync(async function(req, res)
     user.numberOfComments++;
     await user.save();
     const comment = new Comment({beer, comment:commentMsg, user});
+    comment.date = Date();
+    
     await comment.save();
     
     res.redirect("/beer/"+beerID);
@@ -32,6 +34,6 @@ module.exports.DELETE = catchAssync(async function(req, res)
     
     await comment.deleteOne();
 
-    res.redirect("/beer/"+beerID);
+    res.redirect(req.session.originalUrl);
 
 })

@@ -1,0 +1,54 @@
+h1{
+    margin-top: 80px;
+    text-align: center;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.userComment{
+    
+    margin-top: 30px;
+    min-width: 700px;
+    padding: 20px;
+    position: relative;
+
+}
+
+.commentBeerName{
+    margin-top: 40px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.commentMsg{
+    margin-top: 10px;
+    align-self: center;
+    word-wrap: break-word;
+
+}
+
+.commentDate{
+    align-self: flex-end;
+    margin-top: 20px;
+    font-size: small;
+}
+
+.deleteForm{
+    position:absolute;
+    bottom: calc(0% + 15px);
+    left: 0%;
+}
+
+.deleteForm>button{
+    background-color:  rgb(240, 219, 219);
+
+}
+
+.pages{
+    text-align: center;
+    margin-bottom: 20px;
+}

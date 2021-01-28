@@ -216,3 +216,9 @@ form.deleteBeer>button{
 .rightArrow{
     right: 0px;
 }
+
+.time
+{
+    font-size:11px;
+    align-self: flex-end;
+}

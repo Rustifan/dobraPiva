@@ -71,7 +71,7 @@ let user = null;
 async function CreateUser()
 {
     const admin = new User();
-    admin.username = "Močni Prijo";
+    admin.username = "Moćni Prijo";
     admin.email = "mocanlik@gmail.com"
     admin.password = await hash.hash("321",12);
     admin.isAdmin = true;

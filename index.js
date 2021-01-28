@@ -63,7 +63,7 @@ app.use(errorHandle);
 //listening
 app.listen(port, ()=>{
     console.log(`serving on port ${port}`);
-})
+});
 
 
 

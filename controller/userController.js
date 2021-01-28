@@ -1,4 +1,5 @@
 const User = require("../model/userModle");
+const Comment = require("../model/commentModel");
 const catchAsync = require("../errorManage/catchAssync");
 const hashPassword = require("../Utils/hashPassword");
 const ExpressError = require("../errorManage/ExpressError");
@@ -179,4 +180,39 @@ module.exports.userPasswordPUT = catchAsync(async function (req, res) {
     req.flash("sucess", "you sucessfully changed your password " + user.username);
     res.redirect("/users/"+userID);
     
+});
+
+
+module.exports.userCommentsGET = catchAsync(async function(req, res)
+{
+    const user = await User.findById(req.params.userID);
+    if(!user)
+    {
+        throw(new ExpressError("User not found", 404));
+    }
+    
+    let page = 1;
+    if(req.query.page)
+    {
+        page = req.query.page;
+    }
+    
+    const numOfComments = 10;
+    const commentsTotal = await Comment.countDocuments({user});
+    let numOfPages = null;
+    if(commentsTotal%numOfComments==0){numOfPages=commentsTotal/numOfComments;}
+    else{numOfPages=Math.floor(commentsTotal/numOfComments)+1;}
+    
+    const comments = await Comment.find({user})
+        .populate("beer")
+        .sort([["date", 1]])
+        .limit(numOfComments)
+        .skip(numOfComments * (page-1));
+        
+
+    const title = "userComments";    
+    
+    res.render(title, {title, comments, user, numOfPages, page});
+
+
 });
