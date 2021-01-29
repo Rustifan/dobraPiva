@@ -18,11 +18,14 @@ const flash = require("connect-flash");
 const paramFunction = require("./router/routerParamFunction");
 const setLocals = require("./middleware/setLocals");
 const setOriginalUrl = require("./middleware/setOriginalUrl");
-
+const chatControll = require("./controller/chatSocketControll");
 
 //variables
 const port = 3000;
 const app = express();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
 mongoInit();
 
 //app.set
@@ -53,18 +56,23 @@ app.get("/",setOriginalUrl, controller.home);
 app.use("/beer", beerRouter);
 app.use("/beer/:id/ratings", paramFunction, ratingRouter);
 app.use("/beer/:id/comments", paramFunction, commentRouter);
+app.get("/chat", controller.chat);
 app.use("/", userRouter);
 app.get("/*", (req, res)=>{throw(new ExpressError("Reqested page is not found. Error 404", 404));});
+
 
 //error handeling
 
 app.use(errorHandle);
 
+//socket
+chatControll(io);
+
+
 //listening
-app.listen(port, ()=>{
+http.listen(port, ()=>{
     console.log(`serving on port ${port}`);
 });
-
 
 
 
