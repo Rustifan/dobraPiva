@@ -9,7 +9,7 @@ body{
     display:flex;
     flex-direction: column;
     margin-top: 50px;
-    width: 30%;
+    width: fit-content;
     align-self: center;
     
     
@@ -19,8 +19,9 @@ body{
 
 }
 
+
 h1{
-    align-self: center;
+    text-align: center;
     padding: 20px;
     font-size: 60px;
     margin-bottom: 50px;;
@@ -154,3 +155,6 @@ h1{
     align-self: center;
 }
 
+form{
+    align-self: center;
+}
