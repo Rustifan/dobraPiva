@@ -10,7 +10,7 @@ if(!username)
 }
 
 
-sendForm.addEventListener("submit",(event)=>{
+sendForm.addEventListener("submit", (event)=>{
 
     event.preventDefault();
     
@@ -25,23 +25,30 @@ sendForm.addEventListener("submit",(event)=>{
 })
 
 
-
+socket.on("greet", (message)=>{
+    sendMessage("server", message);
+    
+});
 
 
 socket.on("message", (data)=>{
+    sendMessage(data.sender, data.value);
+})
 
+
+function sendMessage(sender, msg)
+{
+    
     const messageContainer = document.createElement("div");
     messageContainer.className = "message";
     const message = document.createElement("p");
     message.className="messageText";
     const messageSender = document.createElement("p");
     messageSender.className ="messageSender";
-    messageSender.textContent = data.sender + ":";
+    messageSender.textContent = sender + ":";
     messageContainer.appendChild(messageSender);
     messageContainer.appendChild(message);
-    message.textContent = data.value;
+    message.textContent = msg;
     chat.appendChild(messageContainer);
     chat.scrollTop = chat.scrollHeight-chat.clientHeight;
-})
-
-
+}

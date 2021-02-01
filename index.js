@@ -19,12 +19,15 @@ const paramFunction = require("./router/routerParamFunction");
 const setLocals = require("./middleware/setLocals");
 const setOriginalUrl = require("./middleware/setOriginalUrl");
 const chatControll = require("./controller/chatSocketControll");
+const mustBeLogged = require("./middleware/mustBeLogged");
 
 //variables
 const port = 3000;
 const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
+
+
 
 mongoInit();
 
@@ -42,7 +45,11 @@ const sessionConfig = {
         maxAge: 1000* 60 * 60 *24 * 7
     },
 };
-app.use(expressSession(sessionConfig));
+const sessionMid = expressSession(sessionConfig);
+io.use((socket, next)=>{
+    sessionMid(socket.request, socket.request.res || {}, next);
+});
+app.use(sessionMid);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -56,7 +63,7 @@ app.get("/",setOriginalUrl, controller.home);
 app.use("/beer", beerRouter);
 app.use("/beer/:id/ratings", paramFunction, ratingRouter);
 app.use("/beer/:id/comments", paramFunction, commentRouter);
-app.get("/chat", controller.chat);
+app.get("/chat", mustBeLogged, controller.chat);
 app.use("/", userRouter);
 app.get("/*", (req, res)=>{throw(new ExpressError("Reqested page is not found. Error 404", 404));});
 

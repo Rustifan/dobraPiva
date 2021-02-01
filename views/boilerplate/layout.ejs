@@ -25,7 +25,11 @@
         <%}%>
         
         <a href="/users">Users</a>
+        <% if(userID){%>
+        
         <a href="/chat">Chat</a>
+        <%}%>
+        
         <a href="/register">Register</a>
         <% if(!userID){%>
             <a href="/login">Login</a>
