@@ -83,4 +83,9 @@ input[type=text]:focus, textarea:focus,input[type=password]:focus, input[type=em
    
 }
 
+.forgotPass{
+    font-size: smaller;
+    margin-left: 20px;
+    text-decoration: none;
+}
 

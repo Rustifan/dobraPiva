@@ -23,6 +23,12 @@ router.post("/register",userExist,hashPassMid, controller.registerPOST);
 router.get("/login", controller.loginGET);
 router.post("/login", controller.loginPOST);
 
+router.get("/login/forgot-pass", controller.forgotPassGET);
+router.post("/login/forgot-pass", controller.forgotPassPOST);
+
+router.get("/login/reset-pass/:email/:token/", controller.resetPassGET);
+router.post("/login/reset-pass/:email/:token/", controller.resetPassPOST);
+
 router.get("/logout", controller.logout);
 
 module.exports = router;

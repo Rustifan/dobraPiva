@@ -25,6 +25,12 @@ const userSchema = new Schema({
     numberOfComments:{
         type: Number,
         required: true
+    },
+    resetPassToken:{
+        type: String,
+    },
+    resetPassTokenExpiration:{
+        type: Date
     }
 
 });

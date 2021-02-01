@@ -1,0 +1,20 @@
+<%-layout("/boilerplate/layout.ejs")%>
+<link rel="stylesheet" href="/css/form.css">
+
+<main>
+    <h1>forgot password</h1>
+    <form class="validateForm" action="/login/forgot-pass" method="POST" novalidate> 
+        <div class="email">
+            <label for="email">Enter email</label>
+            <input class="validate"  type="email" id="email" name="email" required>
+        </div>
+        
+       
+        <button class="Button">Login</button>
+        <br>
+        <p class="fillMessage">Please fill correct information</p>
+        
+    </form>
+</main>
+
+<script src="/javascript/validateForm.js"></script>

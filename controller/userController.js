@@ -3,8 +3,9 @@ const Comment = require("../model/commentModel");
 const catchAsync = require("../errorManage/catchAssync");
 const hashPassword = require("../Utils/hashPassword");
 const ExpressError = require("../errorManage/ExpressError");
-const session = require("express-session");
-const { search } = require("../router/beerRouter");
+const crypto = require("crypto");
+const sendMail = require("../Utils/sendMail");
+const { hash } = require("bcrypt");
 
 module.exports.usersGET = catchAsync(async function(req, res){
     
@@ -214,5 +215,86 @@ module.exports.userCommentsGET = catchAsync(async function(req, res)
     
     res.render(title, {title, comments, user, numOfPages, page});
 
+
+});
+
+module.exports.forgotPassGET = function(req, res)
+{
+    const title="forgotPass";
+    res.render(title, {title});
+}
+
+module.exports.forgotPassPOST = catchAsync(async function(req, res){
+    
+    const {email} = req.body;
+    const user = await User.findOne({email});
+    
+    if(user)
+    {
+        let token = await crypto.randomBytes(15);
+        token = token.toString("hex");
+        user.resetPassToken = await hashPassword.hash(token, 12);
+        const now = new Date();
+        const expire = new Date(now);
+        expire.setMinutes(now.getMinutes()+10);
+        user.resetPassTokenExpiration = expire;
+        await user.save();
+        const domain = "http://localhost:3000";
+        const subject = "forgotten password";
+        const message = `<h1>Forgotten password</h1>
+        <p>For reset your password click on the link <a href="${domain}/login/reset-pass/${email}/${token}">link</p>
+        <p>Token is valid only for short time.</p>`;
+        sendMail.send(email, subject, message);
+
+    }
+
+    req.flash("sucess", "Check your mail to reset your password");
+    res.redirect("/");
+});
+
+module.exports.resetPassGET = catchAsync(async function(req, res)
+{
+    const token = req.params.token;
+    const email = req.params.email;
+    const user = await User.findOne({email, resetPassTokenExpiration: {$gt: new Date()}});
+    if(user && await hashPassword.compare(token, user.resetPassToken))
+    {
+        const title = "resetPass";
+        return res.render(title, {title, token, email});
+    }
+    else{
+        req.flash("err", "token expired or invalid");
+        res.redirect("/");
+    }
+});
+
+module.exports.resetPassPOST = catchAsync(async function(req, res){
+    const token = req.params.token;
+    const email = req.params.email;
+    const user = await User.findOne({email, resetPassTokenExpiration: {$gt: new Date()}});
+    if(user && await hashPassword.compare(token, user.resetPassToken))
+    {
+        const {newPassword} = req.body;
+        user.password = await hashPassword.hash(newPassword, 12);
+        user.resetPassToken = null;
+        user.resetPassTokenExpiration = null;
+        await user.save();
+        req.session.userID = user._id;
+        req.session.username = user.username;
+        req.session.isAdmin = user.isAdmin;
+
+        req.flash("sucess", user.username+" you sucesfully changed your password");
+        res.redirect("/");
+    }
+    else{
+        if(user)
+        {
+            user.resetPassToken = null;
+            user.resetPassTokenExpiration = null;
+            await user.save();
+        }
+        req.flash("err", "token expired or invalid");
+        res.redirect("/");
+    }
 
 });

@@ -1,0 +1,28 @@
+<%-layout("/boilerplate/layout.ejs")%>
+
+
+<link rel="stylesheet" href="/css/form.css">
+
+    <main>
+        <h1>Change Password</h1>
+        <form class="validateForm" action="/login/reset-pass/<%=email%>/<%=token%>" method="POST" novalidate> 
+          
+            
+            <div class="password">
+                <label for="password">New password</label>
+                <input class="validate password" type="password" id="password" name="newPassword" required>
+            </div>
+            <div class="repeatPassword">
+                <label for="repeatPassword">Repeat new password</label>
+                <input type="password" class="repeatPassword validate" id="repeatPassword" required>
+            </div>
+           
+            <button class="Button">Change password</button>
+            <br>
+            <p class="fillMessage">Please fill correct information</p>
+            <p class="repeatPassMessage">passwords are not same</p>
+        </form>
+    </main>
+
+    <script src="/javascript/validateForm.js"></script>
+    <script src="/javascript/repeatPassValidation.js"></script>
