@@ -1,9 +1,11 @@
 //mongoose conection
 const mongoose = require('mongoose');
+const mongoHost = process.env.MONGO_HOST || "localhost";
+
 
 function mongoInit()
 {
-    const mongoAdress = "mongodb://localhost/dobraPiva"
+    const mongoAdress = `mongodb://${mongoHost}/dobraPiva`
     mongoose.connect(mongoAdress, {useNewUrlParser: true,  useUnifiedTopology: true});
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));

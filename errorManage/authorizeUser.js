@@ -12,7 +12,7 @@ module.exports = catchAssync(async function(req, res, next){
     const loggedUserID = req.session.userID;
     const userID = req.params.userID;
    
-    if(loggedUserID !==userID)
+    if(loggedUserID != userID)
     {
         req.flash("err", "permission denied");
         res.redirect("/");

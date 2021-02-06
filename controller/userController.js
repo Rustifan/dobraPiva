@@ -242,7 +242,7 @@ module.exports.forgotPassPOST = catchAsync(async function(req, res){
         const domain = "http://localhost:3000";
         const subject = "forgotten password";
         const message = `<h1>Forgotten password</h1>
-        <p>For reset your password click on the link <a href="${domain}/login/reset-pass/${email}/${token}">link</p>
+        <p>For reset your password click on the link <a href="${domain}/login/reset-pass/${email}/${token}">link</p></a>
         <p>Token is valid only for short time.</p>`;
         sendMail.send(email, subject, message);
 
