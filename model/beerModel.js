@@ -47,6 +47,10 @@ const beerScheema = new Schema({
         ref: "User",
         required: true
     },
+    abv:{
+        type: Number,
+        required: true
+    },
     pending:{
         type: Boolean,
         required: true

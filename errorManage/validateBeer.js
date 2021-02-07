@@ -11,6 +11,7 @@ module.exports = function(req, res, next)
         beerStyle: joi.string().required(),
         location: joi.string().required(),
         description: joi.string().required(),
+        abv: joi.number().required(),
         image: joi.string(),    
     });
 

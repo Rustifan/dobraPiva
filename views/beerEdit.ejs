@@ -19,6 +19,10 @@
                 <input class="validate" type="text" id="location" placeholder="mjesto" name="location" required value="<%=beer.location.name%>">
             </div>
             <div>
+                <label for="abv">abv</label>
+                <input class="validate" type="number" step="any" id="abv" placeholder="abv*" name="abv" required value=<%=beer.abv%>>
+            </div>
+            <div>
                 <label for="description">description</label>
                 <textarea id="description" name="description" rows=4 cols=20 required><%=beer.description%></textarea>
             </div>

@@ -57,42 +57,9 @@
             <%}%>
     </section>
 
-    <div class="pages">
-        <%if(parseInt(page)!=1){%>
-            <a class="first" href="/">first</a>
-            <%}%>
-
-                <%if(parseInt(page)-1>0){%>
-                    <a class="before" href="/">before</a>
-                    <%}%>
-
-                        <%for(let i=-3; i<4; i++){%>
-                            <%if(i+parseInt(page)>0 && i+parseInt(page)<=numOfPages){%>
-                                    <%if(i===0){%>
-                                        <b>
-                                            <%=page%>
-                                        </b>
-                                        <%}else{%>
-
-                                            <%if(parseInt(page)+i<parseInt(numOfPages)){%>
-                                                <a class="page<%=parseInt(page)+i%>" href="/">
-                                                    <%=parseInt(page)+i%>
-                                                </a>
-                                                <%}%>
-                                                    <%}%>
-
-                                                        <%}%>
-
-
-                                                            <%}%>
-                                                                <%if(parseInt(page)+1<=parseInt(numOfPages)){%>
-                                                                    <a class="next" href="/">next</a>
-                                                                    <%}%>
-                                                                        <%if(parseInt(page)<numOfPages-1){%>
-                                                                            <a class="last" href="/">last</a>
-                                                                            <%}%>
-
     </div>
+    <%-include("./partials/pages.ejs")%>
+    
 
 
     <script src="/javascript/usersSort.js"></script>

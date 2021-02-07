@@ -12,8 +12,11 @@ switch (sortCategory) {
     case "beerStyle":
         sortCategoryIndex = 2;
         break;
-    case "location":
+    case "abv":
         sortCategoryIndex = 3;
+        break;
+    case "location":
+        sortCategoryIndex = 4;
         break;
 }
 

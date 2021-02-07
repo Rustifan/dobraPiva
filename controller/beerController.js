@@ -26,6 +26,9 @@ module.exports.beerHome = catchAsync(async function(req, res)
         sortCategory = "beerStyle";
         break;
         case "3":
+        sortCategory = "abv";
+        break;
+        case "4":
         sortCategory = "location";
         break;
         case undefined:
@@ -87,6 +90,9 @@ module.exports.beerFind = catchAsync(async function(req, res){
         sortCategory = "beerStyle";
         break;
         case "3":
+        sortCategory = "abv";
+        break;
+        case "4":
         sortCategory = "location";
         break;
         case undefined:
@@ -236,7 +242,7 @@ module.exports.beerEditPUT = catchAsync(async function(req, res)
     beer.beerStyle = req.body.beerStyle;
     beer.location = req.body.location;
     beer.description = req.body.description;
-
+    beer.abv = req.body.abv;
     await beer.save();
     res.redirect(req.session.originalUrl);
 });

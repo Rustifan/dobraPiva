@@ -24,8 +24,9 @@ let seedImages = ["https://besthqwallpapers.com/",
 "https://encrypted-tbn0.gstatic.com/images"
 ];
 
-if(process.env.NODE_ENV="production")
+if(process.env.NODE_ENV==="production")
 {
+
     seedImages = [];
 }
 

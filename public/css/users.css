@@ -4,36 +4,60 @@ h1{
     
 }
 
+html{
+    height: 100%;
+}
+body{
+    
+    background-image: url("/image/cheers.jpg");
+    background-size:cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    height: 100%;
+    
+}
+
 .userList{
     width: 80%;
+    
     margin:auto;
     margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .user{
+
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color:rgb(250, 250, 255);
     height: 30px;
     margin:10px;
     padding: 10px;
-    position: relative;
+    width: 80%;
     padding-left: 40px;
     border-radius: 10px;
 }
 
 .template{
-    background-color:rgba(153, 152, 152, 0.19);
+    background-color:rgba(250, 250, 255,0.7);
 }
 
 .user>span{
    
-    margin-right: 20px;
-    width: 300px;
+   
+    width: 10%;
     display: inline-block;
+    margin: auto;
 }
 
+.numberOfComments{
+    width: 5%;
+}
 .numberOfComments>a{
     text-decoration: none;
     color: blue;
@@ -44,7 +68,10 @@ h1{
 }
 
 .user>span.admin{
-    width: 60px;
+    width:10px;
+    margin: auto;
+    
+
 }
 
 .clickSort>p{
@@ -63,8 +90,14 @@ h1{
 }
 
 .userForm>input{
+    border-radius: 20px;
     height:25px;
     padding: 0px;
+    text-align: center;
+}
+
+.userForm>input::-webkit-input-placeholder{
+    text-align: center;
 }
 
 .userForm>button{
@@ -95,3 +128,66 @@ h1{
     margin-right: 5px;
 }
 
+@media (max-width: 1000px)
+{
+
+    .user>span{
+   
+   
+        width: 10%;
+        display: inline-block;
+       margin: 0px;
+    }
+    .userList{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+    }
+   
+    .user{
+        padding:10px 0px;
+        display: flex;
+        width:95%;
+        margin:0px;
+        margin-bottom: 10px;
+        height: fit-content;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .numberOfComments{
+        width:20px;
+        margin-right: 0px;
+        flex-shrink: 2;
+    }
+    .user>span.admin{
+        display: none;
+    }
+    .user>span.email{
+        width:100px;
+        flex-shrink: 0;
+        margin-right: 0px;
+        word-wrap: break-word;
+    }
+    .user>span.lastTimeActive{
+        width: 5%;
+    }
+}
+
+@media(max-width: 500px)
+{
+    .userList{
+        width:100%;
+        
+
+    }
+    .user{
+        width:100%;
+    }
+    div.user>span{
+        font-size: 14px;
+
+    }
+    
+}

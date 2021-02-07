@@ -2,6 +2,15 @@ html, body{
     height: 100%;
 }
 
+body{
+  background-image: url("/image/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: color;
+  
+
+}
+
 main{
     height: 100%;
     display:flex;
@@ -9,6 +18,7 @@ main{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    
 }
 
 h1{
@@ -24,8 +34,8 @@ h1{
     height: 500px;
     width: 80%;
     border-radius: 5px;
+    background-color: rgba(255,255,255,0.5);
     
-    margin-bottom: 10px;
     overflow-y: auto;
 
 }
@@ -36,19 +46,29 @@ h1{
 
 .sendForm{
    width:50%;
-    
+
 }
 
 .sendForm>input{
+
+    height: 30px;
     width:70%;
 }
 
+@keyframes msgAnim{
+    from {transform: scale(0) translateX(-500px)}
+    to {transform: scale(1) translateX(0px)}
+}
+
 .message{
+
+    animation: msgAnim 1s;
     margin-left: 20px;
     min-width: 300px;
     width:fit-content;
     max-width: 90%;
     min-height:50px;
+    background-color: rgba(201, 219, 172, 0.965);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px;
     border-radius: 20px;
@@ -64,4 +84,13 @@ h1{
 
 .messageSender{
     font-weight: bold;
+}
+
+@media (max-width: 500px)
+{
+    .message{
+        min-width: 200px;
+        margin-left: 0px;
+
+    }
 }

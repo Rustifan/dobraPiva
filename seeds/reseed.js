@@ -39,6 +39,8 @@ const images = ["https://besthqwallpapers.com/Uploads/8-2-2017/13407/thumb2-beer
 
 
 
+
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1)
   }
@@ -91,6 +93,13 @@ async function CreateUser()
 
 }
 
+function getABV(highNum=20)
+{   
+    highNum*=10;
+    let abv = (Math.floor(Math.random()*highNum+1))/10;
+    return abv;
+}
+
 async function CreateBeer() 
 {
     let nameIndex1 = Math.floor(Math.random() * names.length);
@@ -131,6 +140,7 @@ async function CreateBeer()
     beer.image.push(image); 
     beer.rating = 0;
     beer.user = user;
+    beer.abv=getABV();
     beer.pending = false;
     await beer.save();
     console.log("new beer created");

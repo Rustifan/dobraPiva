@@ -9,7 +9,7 @@ const { hash } = require("bcrypt");
 
 module.exports.usersGET = catchAsync(async function(req, res){
     
-    const userPerPage = 20;
+    const userPerPage = 10;
     let sortCategory = "username";
     let sortOrder = 1;
     let search = "";

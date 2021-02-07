@@ -1,11 +1,37 @@
 body{
     display: flex;
     flex-direction: column;
+    
+}
 
+@keyframes listAnim{
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
+
+.backgroundImage{
+   
+   width: 100%;
+   height: 100%;
+   
+   position:fixed;
+   z-index: -1;
+   background-image: url("/image/dark-beer.jpg");
+
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size:cover;
+   
+    filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
 }
 
 .BeerList{
-    padding: 20px;
+
+    
+    margin-top: 5px;
+    padding: 10px;
     display:flex;
     flex-direction: column;
     margin-top: 50px;
@@ -21,46 +47,90 @@ body{
 
 
 h1{
+    
+    
     text-align: center;
-    padding: 20px;
+    align-content: center;
+    color: black;
+    padding: 20px 50px;
     font-size: 60px;
-    margin-bottom: 50px;;
+    background-color: rgba(248, 246, 248, 0.8);
+    border-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: fit-content;
+    margin:auto;
+    margin-bottom:0px;
+    margin-top: 30px;
+
+
+
 }
+
+.list{
+    animation: listAnim 1s;
+    
+    padding:35px 50px;
+    background-color: rgba(248, 246, 248, 0.8);
+    border-radius: 20px;
+
+}
+
 .beerLocation
 {
-    width:50px;
+    width:20%;
 }
+
+
 .beerLinkDiv{
-    width:850px;
-    height:40px;
+    width:950px;
+    min-height:40px;
+    height:fit-content;
     display:flex;
     
     background-color:ghostwhite;
+    opacity: 0.9;
     margin-bottom: 10px;
     font-size: large;
     padding-right: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition:50ms;
+    border-radius: 15px;
 }
+
+
 .beerName
 {
-    width: 200px;
+    width: 20%;
+    margin:auto;
+}
+
+.abv{
+    width:5%;
+    margin:auto;
+
 }
 
 .beerRating
 {
-    padding-left: 40px;
-    width:200px;
-    margin-left: 50%;
+    
+    width:10%;
+    margin:10px;
+
+    
     
 }
 .beerStyle{
-    width:200px;
+    width:10%;
+    margin:auto;
+
     
 }
 
 .number{
-    width:50px;
+    width:2%;
+    margin:auto;
+
     
 }
 
@@ -85,12 +155,12 @@ h1{
 .beerTitle
 {
     
-    width: 850px;
+    width: 950px;
     height: 100%; 
     text-decoration: none;
     display: flex;
     color: black;
-    margin-bottom: 10px;
+    justify-content: center;
     
 
 }
@@ -116,14 +186,15 @@ h1{
 }
 
 .add{
+    margin:auto;
     margin-top: 20px;
     width:120px;
     height:40px;
     display:flex;
-    align-self: flex-start;
-    background-color: rgb(182, 155, 34);
-    margin-bottom: 10px;
     
+    background-color: rgba(218, 149, 39, 0.7);
+    margin-bottom: 10px;
+    border-radius: 20px;
     font-size: large;
     padding-right: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -156,5 +227,124 @@ h1{
 }
 
 form{
+
     align-self: center;
+    padding: 20px;
+    background-color:rgba(255, 216, 143,0.7);
+    border-radius: 20px;
+
+}
+
+form>span>input{
+    
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    width: 250px;
+    
+}
+
+form>select{
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    width: 250px;
+}
+
+
+form>span>button{
+    background-color: rgb(202, 156, 48);
+    margin-left: -50px;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 10px;
+    outline: none;
+    cursor:pointer;
+
+}
+
+form>span{
+    display: inline;
+}
+@media(max-width: 1000px)
+{
+    .beerTitle, .beerLinkDiv{
+        width:100%;
+        
+    }
+}
+
+@media(max-width:800px)
+{
+    .list{
+        width:100%;
+        margin-left: 0px;
+        padding: 0px;
+    }
+
+    main.BeerList{
+        width:100%;
+        margin:0px;
+        padding: 0px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    form{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:10px;
+        transform: scale(0.8);
+        margin-bottom: 10px;
+    }
+
+    form>span{
+        display:flex;    
+    }
+
+    form>span>button{
+        display: inline;
+        
+    }
+
+    .beerTitle, .beerLinkDiv{
+        width:95%;
+        padding:0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+
+        
+    }
+    .beerLinkDiv{
+        margin-bottom: 10px;
+    }
+
+    
+    
+    h1{
+        margin-top: 0px;
+        width:20%;
+        font-size: 20px;
+    }
+
+    .pages{
+        width: 95%;
+    }
+}
+
+
+
+@media(max-width:500px)
+{
+    span{
+        font-size: 12px;
+    }
+
+    
+   
 }
