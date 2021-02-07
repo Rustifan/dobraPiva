@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%=title%>
-    </title>
+    <title><%=title%></title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
@@ -18,25 +16,40 @@
 
 <body>
     <nav class="navbar">
-        <a href="/">Home</a>
-        <a href="/beer">Beer</a>
-        <% if(isAdmin){%>
-            <a href="/beer/pending">pending beer</a>
-        <%}%>
         
-        <a href="/users">Users</a>
-        <% if(userID){%>
-        
-        <a href="/chat">Chat</a>
-        <%}%>
-        
-        <a href="/register">Register</a>
-        <% if(!userID){%>
-            <a href="/login">Login</a>
-            <%}else{%>
-                <a href="/logout">Logout</a>
-                <a href="/users/<%=userID%>">user settings</a>
+        <div class="navMain">
+            <div class="container">
+            <div class="bar1 bars"></div>
+            <div class="bar2 bars"></div>
+            <div class="bar3 bars"></div>
+        </div>
+            <a href="/">Home</a>
+            <a href="/beer">Beer</a>
+            <% if(isAdmin){%>
+                <a href="/beer/pending">pending beer</a>
             <%}%>
+            <% if(userID){%>
+        
+            <a href="/chat">Chat</a>
+            <%}%>
+            <a href="/users">Users</a>
+
+        </div>
+        
+        <div class="userSettings">
+            
+            <img class="userIcon" src="/svg/beerUser.svg" alt="beer user icon">
+            
+            
+            
+            <% if(!userID){%>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <%}else{%>
+                <a href="/users/<%=userID%>">user settings</a>
+                <a href="/logout">Logout</a>
+            <%}%>
+        </div>
     </nav>
 
     <% if(userID){%>
@@ -68,6 +81,7 @@
                             <%- body %>
 
 <script src="/javascript/deleteMessage.js"></script>
+<script src="/javascript/navbar.js"></script>
 </body>
 
 

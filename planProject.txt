@@ -1,7 +1,8 @@
 Project roadmap:
 
--beer chat
--forgoten password
--add more security(mongo injection, helmet...)
+
+
+
 -css styling
+
 
