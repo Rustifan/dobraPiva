@@ -20,6 +20,7 @@ const setLocals = require("./middleware/setLocals");
 const setOriginalUrl = require("./middleware/setOriginalUrl");
 const chatControll = require("./controller/chatSocketControll");
 const mustBeLogged = require("./middleware/mustBeLogged");
+const clickMid = require("./middleware/clickMid");
 //security
 const helmet = require("helmet");
 const contentSecurityPolicy = require("./middleware/helmetContentSecurityPol");
@@ -60,7 +61,7 @@ app.use(flash());
 app.use(mongoSanitize());
 app.use(htmlSanitazer());
 app.use(setLocals);
-
+app.use(clickMid);
 
 //routes
 app.get("/",setOriginalUrl, controller.home);
