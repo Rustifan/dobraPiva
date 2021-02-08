@@ -23,6 +23,7 @@ module.exports.post = catchAsync(async function(req, res){
 
     req.flash("sucess", "you sucesfully rated this beer");
     
-    res.redirect("/beer/"+beerID);
+
+    res.redirect("/beer/"+beerID+"?rated=true");
 
 })

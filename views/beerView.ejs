@@ -5,6 +5,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="/css/rating.css">
 
+    <div class="background"></div>
     <%if(beer){ %>
         <script>const beerCoords = [<%=beer.location.geometry.coordinates %>] </script>
         <%}%>
@@ -53,8 +54,8 @@
                                         <div class="beerDescription"><b>Description: </b>
                                             <%=beer.description%>
                                         </div>
-
-                                        <%if(beer.user==userID || isAdmin) { %>
+                                        
+                                        <%if(beer.user.toString()==userID || isAdmin) { %>
                                             <div class="buttons">
                                                 <div class="anchorButton">
                                                     <a href="/beer/<%=beer._id%>/edit">
@@ -141,7 +142,7 @@
                                         <p>You rated this beer:</p>
                                         <div class="rating">
                                             <%for(let i=0; i < userRating.rating; i++){ %>
-                                                <div class="fullBeer"></div>
+                                                <div class="fullBeer <%if(rated=="true"){%>ratedAnimation<%}%>"></div>
 
                                                 <% }%>
                                                     <%for(let i=0; i < 5-userRating.rating; i++){%>
@@ -198,13 +199,13 @@
                                     <div class="commentMessage">
                                         <%=comment.comment%>
                                     </div>
-
-                                    <% if(comment.user._id==userID || isAdmin) { %>
+                                   
+                                    <%if((comment.user.id==userID) || isAdmin) { %>
                                         <form class="deleteForm"
                                             action="/beer/<%=beer._id%>/comments/<%=comment._id%>?_method=DELETE"
                                             method="POST">
-                                            
-                                            <button class="Button deleteButton">Delete</button>
+                                        
+                                        <button class="Button deleteButton">Delete</button>
 
                                         </form>
                                         <%} %>

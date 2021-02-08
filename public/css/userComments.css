@@ -3,6 +3,20 @@ h1{
     text-align: center;
 }
 
+.background{
+    position: fixed;
+    z-index: -5;
+    height: 100%;
+    width: 100%;
+    background-image: url("/image/bottles.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+        
+    
+}
+
 main{
     display: flex;
     align-items: center;
@@ -51,4 +65,19 @@ div.userComment{
 .pages{
     text-align: center;
     margin-bottom: 20px;
+}
+
+@media(max-width: 800px)
+{
+    div.userComment{
+        margin: 10px 10px;
+        min-width: 90%;
+    }
+
+    h1{
+        font-size: 30px;
+        margin-bottom: 0px;
+    }
+
+    
 }

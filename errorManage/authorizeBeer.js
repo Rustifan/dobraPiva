@@ -36,7 +36,7 @@ module.exports.edit = catchAsync(async function(req, res, next)
     const beer = await Beer.findById(req.params.id).populate("user");
    
 
-    if(req.session.userID == beer.user._id || req.session.isAdmin)
+    if(req.session.userID.toString() == beer.user._id.toString() || req.session.isAdmin)
     {
         
         next();

@@ -209,6 +209,7 @@ module.exports.beerView = catchAsync(async function(req, res)
     const comments = await Comment.find({beer}).populate("user");
     const title = "beerView";
     let userRating = 0;
+    const rated = req.query.rated;
     if(req.session.userID)
     {
         const rating = await Rating.findOne({user: req.session.userID, beer});
@@ -218,7 +219,7 @@ module.exports.beerView = catchAsync(async function(req, res)
         }
     }
 
-    res.render(title, {beer, title, comments, userRating});
+    res.render(title, {beer, title, comments, userRating, rated});
 
 });
 
