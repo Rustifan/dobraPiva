@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 var transporter = nodemailer.createTransport({
-    host: "smtp.eu.mailgun.org",
+    host: "smtp.eu.mailgun.o",
     port: 587,
     auth: {
       user: process.env.MAILGUN_USER,

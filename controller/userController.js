@@ -239,7 +239,8 @@ module.exports.forgotPassPOST = catchAsync(async function(req, res){
         expire.setMinutes(now.getMinutes()+10);
         user.resetPassTokenExpiration = expire;
         await user.save();
-        const domain = "http://localhost:3000";
+
+        const domain = process.env.MYDOMAIN || "http://localhost:3000";
         const subject = "forgotten password";
         const message = `<h1>Forgotten password</h1>
         <p>For reset your password click on the link <a href="${domain}/login/reset-pass/${email}/${token}">link</p></a>

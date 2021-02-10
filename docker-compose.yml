@@ -3,10 +3,12 @@ services:
   haproxy:
     image: haproxy
     ports:
-      - "8080:80"
+      - "80:80"
+      - "443:443"
     restart: always
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - /etc/haproxy/certs/:/etc/haproxy/certs/
   app1:
     image: test
     environment: 

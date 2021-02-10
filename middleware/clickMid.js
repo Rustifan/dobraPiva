@@ -8,7 +8,7 @@ module.exports = (req, res, next)=>
         return next();
     }
     const click = new Click();
-    click.ip = req.ip;
+    click.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
     click.page =req.originalUrl;
     click.time = Date();
     if(req.session.username)

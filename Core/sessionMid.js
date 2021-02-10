@@ -11,7 +11,7 @@ var store = new MongoStore({
 store.on("error", error=>console.log(error));
 
 const sessionConfig = {
-    secret: "ZeldaDaBeast",
+    secret: process.env.SESSION_PASS,
     resave: false,
     saveUninitialized: false,
     store,
