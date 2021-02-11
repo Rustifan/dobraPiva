@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=title%></title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/rustifan/image/upload/v1613060337/beer/ezuhkyntcl4m2dv0yjq2.png"/>
+    <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/rustifan/image/upload/v1613060337/beer/ezuhkyntcl4m2dv0yjq2.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/stylesheet.css">
+
     <script>const mapToken = "<%=mapBoxToken%>"</script>
     
 </head>
@@ -23,16 +26,16 @@
             <div class="bar2 bars"></div>
             <div class="bar3 bars"></div>
         </div>
-            <a href="/">Home</a>
-            <a href="/beer">Beer</a>
+            <a href="/">Početna</a>
+            <a href="/beer">Piva</a>
             <% if(isAdmin){%>
-                <a href="/beer/pending">pending beer</a>
+                <a href="/beer/pending">Na čekanju</a>
             <%}%>
             <% if(userID){%>
         
             <a href="/chat">Chat</a>
             <%}%>
-            <a href="/users">Users</a>
+            <a href="/users">Korisnici</a>
 
         </div>
         
@@ -41,13 +44,14 @@
             <img class="userIcon" src="/svg/beerUser.svg" alt="beer user icon">
             
             
+            <a href="/" class ="languageBtn">Jezik</a>
             
             <% if(!userID){%>
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            <a href="/login">Prijava</a>
+            <a href="/register">Registracija</a>
             <%}else{%>
-                <a href="/users/<%=userID%>">user settings</a>
-                <a href="/logout">Logout</a>
+                <a href="/users/<%=userID%>">Postavke</a>
+                <a href="/logout">Odjava</a>
             <%}%>
         </div>
     </nav>
@@ -55,7 +59,7 @@
     <% if(userID){%>
 
         <div class="userInfo card">
-            <p>You are logged in as <b>
+            <p>Prijavljen si kao <b>
                     <%=username%>
                 </b></p>
         </div>
@@ -78,7 +82,17 @@
                         </div>
 
                         <% } %>
+
+                        <div class="languageDiv">
+                            <div>Odaberi jezik</div>
+                            <div class="langButtons">
+                                <button class="hr Button">HR</button>
+                                <button class="en Button">EN</button>
+                            </div>
+                            
+                        </div>
                             <%- body %>
+<script src="/javascript/languageFront.js"></script>
 
 <script src="/javascript/deleteMessage.js"></script>
 <script src="/javascript/navbar.js"></script>

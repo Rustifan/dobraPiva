@@ -1,26 +1,27 @@
-<%-layout("/boilerplate/layout.ejs")%>
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
 
 
 <link rel="stylesheet" href="/css/form.css">
 
     <main>
-        <h1>Change Password</h1>
+        <h1>Promjena lozinke</h1>
         <form class="validateForm" action="/login/reset-pass/<%=email%>/<%=token%>" method="POST" novalidate> 
           
             
             <div class="password">
-                <label for="password">New password</label>
+                <label for="password">Nova lozinka</label>
                 <input class="validate password" type="password" id="password" name="newPassword" required>
             </div>
             <div class="repeatPassword">
-                <label for="repeatPassword">Repeat new password</label>
+                <label for="repeatPassword">Ponovite novu lozinku</label>
                 <input type="password" class="repeatPassword validate" id="repeatPassword" required>
             </div>
            
-            <button class="Button">Change password</button>
+            <button class="Button">Promijeni lozinku</button>
             <br>
-            <p class="fillMessage">Please fill correct information</p>
-            <p class="repeatPassMessage">passwords are not same</p>
+            <p class="fillMessage">Molim vas unesite točne infirmacije</p>
+            <p class="repeatPassMessage">lozinke nisu iste</p>
         </form>
     </main>
 

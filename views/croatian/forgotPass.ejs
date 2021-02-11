@@ -1,0 +1,21 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+<link rel="stylesheet" href="/css/form.css">
+
+<main>
+    <h1>zaboravljena lozinka</h1>
+    <form class="validateForm" action="/login/forgot-pass" method="POST" novalidate> 
+        <div class="email">
+            <label for="email">Unesite email</label>
+            <input class="validate"  type="email" id="email" name="email" required>
+        </div>
+        
+       
+        <button class="Button">Pošalji</button>
+        <br>
+        <p class="fillMessage">Molim vas unesite točne informacije</p>
+        
+    </form>
+</main>
+
+<script src="/javascript/validateForm.js"></script>

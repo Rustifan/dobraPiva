@@ -1,0 +1,66 @@
+<%- layout("./english/boilerplate/layout.ejs") %>
+
+    <link rel="stylesheet" href="/css/users.css">
+
+    <script>const numOfPages =<%=numOfPages%> </script>
+
+    <h1>Users</h1>
+
+    <form class="userForm" action="/users">
+        <label for="serachUser" style="display: none;"></label>
+        <input id="searchUser" type="text" placeholder="Search user" name="search">
+        <button>Search</button>
+    </form>
+
+    <section class="userList">
+        <div class="user template">
+            <span class="username clickSort">
+                <p>username</p>
+            </span>
+            <span class="lastTimeActive clickSort">
+                <p>last time active</p>
+            </span>
+            <span class="numberOfComments clickSort">
+                <p>number of comments</p>
+            </span>
+            <span class="email">email</span>
+
+            <span class="admin"></span>
+        </div>
+        <%for(let user of users){%>
+            <div class="user">
+                <span class="username">
+                    <%=user.username%>
+                </span>
+                <span class="lastTimeActive">
+                    <%=user.getDate()%>
+                </span>
+                <%if(user.numberOfComments>0){%>
+                    <span class="numberOfComments"><a href="/users/<%=user._id%>/comments">
+                            <%=user.numberOfComments%>
+                        </a></span>
+
+                    <%}else{%>
+                        <span class="numberOfComments">
+                            <%=user.numberOfComments%>
+                        </span>
+
+                        <%}%>
+                            <span class="email"><a href="mailto: <%=user.email%>">
+                                    <%=user.email%>
+                                </a></span>
+
+                            <span class="admin">
+                                <%if(user.isAdmin){%><b>admin</b>
+                                    <%}%>
+                            </span>
+            </div>
+            <%}%>
+    </section>
+
+    </div>
+    <%-include("./partials/pages.ejs")%>
+    
+
+
+    <script src="/javascript/usersSort.js"></script>

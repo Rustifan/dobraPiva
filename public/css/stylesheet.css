@@ -234,13 +234,56 @@ p.removeFlash {
 }
 
 
+.languageBtn{
+
+    position: relative;
+}
+
+.languageDiv{
+    width: 150px;
+    position: fixed;
+    flex-direction: column;
+    top: 20%;
+    left: calc(50% - 75px);
+    
+    border: black 1px solid;
+    border-radius: 20px;
+    display: flex;
+    align-items:center;
+    justify-content:space-around;
+    z-index: 10;
+    
+    background-color: rgb(84, 84, 84);
+
+    padding: 15px;
+    transform: scale(0);
+
+}
+
+.languageDiv>div{
+    margin-bottom: 15px;
+    color: white;
+
+}
+
+.langButtons{
+    display: flex;
+}
+button.hr, button.en{
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: snow;
+    
+    padding: 2px;
+}
+
 @media (min-width: 1000px)
 {
     nav.navbar{
         width: 70%;
         align-self: center;
         border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
 }
 

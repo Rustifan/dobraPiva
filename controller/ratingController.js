@@ -21,7 +21,9 @@ module.exports.post = catchAsync(async function(req, res){
     await newRating.save();
     await updateBeerRating(beer);
 
-    req.flash("sucess", "you sucesfully rated this beer");
+    let msg = "you sucesfully rated this beer";
+    if(req.language == "croatian"){msg = "Uspješno ste ocjenili pivo";}
+    req.flash("sucess", msg);
     
 
     res.redirect("/beer/"+beerID+"?rated=true");

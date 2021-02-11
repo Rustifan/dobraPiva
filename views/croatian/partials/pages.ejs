@@ -1,0 +1,38 @@
+
+
+<%if(parseInt(numOfPages)>1){%>
+
+    <link rel="stylesheet" href="/css/pages.css">
+    <div class="pages">
+        <div class="change">promijeni stranicu</div>
+        
+        <%if(parseInt(page)>2){%>
+        <a class="first" href="/">prva</a>
+        <%}%>
+
+        <%if(parseInt(page)-1>0){%>
+        <a class="before" href="/">prije</a>    
+        <%}%>
+          
+        <%for(let i = -3; i<4; i++){%>
+            <%if(i+parseInt(page)>0 && i+parseInt(page)<=numOfPages){%>
+            <%if(i===0){%>
+                <b><%=page%></b>
+            <%}else{%>
+            
+                <%if(parseInt(page)+i<parseInt(numOfPages)){%>
+                <a class="page<%=parseInt(page)+i%>" href="/"><%=parseInt(page)+i%></a>
+                <%}%>
+            <%}%>
+
+            <%}%>
+            
+            
+        <%}%>
+        <%if(parseInt(page)<parseInt(numOfPages)){%>
+        <a class="next" href="/">sljedeća</a>    
+        <%}%>
+        <%if(parseInt(page)<numOfPages-1){%>
+        <a class="last" href="/">zadnja</a> 
+        <%}%>
+        <%}%>

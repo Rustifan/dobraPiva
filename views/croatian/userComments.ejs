@@ -1,0 +1,33 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+<script>const lastPage = <%=numOfPages%></script>
+
+<link rel="stylesheet" href="/css/userComments.css">
+<div class="background"></div>
+
+<h1>Komentari od "<%=user.username%>":</h1>
+
+<main>
+    <%for(let comment of comments){%>
+        <h2 class="commentBeerName"><%=comment.beer.name%>:</h2>
+        
+        <div class="userComment card">
+             <p class="commentMsg"><%=comment.comment%></p>
+             <p class="commentDate"><%=comment.timeOfPosting()%></p>
+             <% if(comment.user._id.toString()==userID || isAdmin) { %>
+                <form class="deleteForm"
+                    action="/beer/<%=comment.beer._id%>/comments/<%=comment._id%>?_method=DELETE"
+                    method="POST">
+                    <button class="Button deleteButton">Izbriši</button>
+
+                </form>
+                <%} %>
+        </div> 
+     <%}%> 
+     
+</main>
+<%-include("./partials/pages.ejs")%>
+
+
+
+    <script src="/javascript/changePage.js"></script>

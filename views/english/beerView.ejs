@@ -1,0 +1,230 @@
+<%- layout("./english/boilerplate/layout.ejs") %>
+
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="/css/rating.css">
+
+    <div class="background"></div>
+    <%if(beer){ %>
+        <script>const beerCoords = [<%=beer.location.geometry.coordinates %>] </script>
+        <%}%>
+
+
+
+            <link rel="stylesheet" href="/css/beerView.css">
+            <main>
+                <section>
+
+                    <div class="card beerCard">
+                        <h1>
+                            <%=beer.name%>
+                        </h1>
+                        <% if(beer.image.length){ %>
+                            <div class="images">
+                                
+
+                                <%for(let image of beer.image){%>
+                                    <div class="image">
+                                        <img class="picture" src="<%=image.path%>" alt="<%=image.filename%>">
+                                    </div>
+
+                                    <%}%>
+                                    <%if(beer.image.length > 1){%>
+                                    <div class="leftArrow" onclick="moveLeft()">&lt;</div>
+                                    <div class="rightArrow" onClick="moveRight()">&gt;</div>
+                                <%}%>
+                            </div>
+                            <% } %>
+                                <% if(beer.rating) {%>
+
+                                    <div class="ratingAvg">
+                                        <b>Rating:</b>
+                                        <%=beer.rating%>
+                                    </div>
+                                    <% }%>
+                                        <div class="beerStyle"><b>Beer style: </b>
+                                            <%=beer.beerStyle%>
+                                        </div>
+                                        <div class="abv"><b>abv: </b><%=beer.abv%></div>
+
+                                        <div class="beerLocation"><b>Location: </b>
+                                            <%=beer.location.name%>
+                                        </div>
+                                        <div class="beerDescription"><b>Description: </b>
+                                            <%=beer.description%>
+                                        </div>
+                                        
+                                        <%if(beer.user.toString()==userID || isAdmin) { %>
+                                            <div class="buttons">
+                                                <div class="anchorButton">
+                                                    <a href="/beer/<%=beer._id%>/edit">
+                                                        <p>edit</p>
+                                                    </a>
+                                                </div>
+                                                <div class="anchorButton">
+                                                    <a href="/beer/<%=beer._id%>/images">
+                                                        <p>images</p>
+                                                    </a>
+                                                </div>
+                                                
+                                                <%if(isAdmin){%>
+                                                
+                                                <%if(beer.pending){%>
+                                                <form action="/beer/<%=beer._id%>/approve?_method=PUT" class="approve" method="POST">
+                                                    <button class="Button pendingButton">
+                                                        <p>Approve</p>
+                                                    </button>
+                                                </form>
+                                                <%}else{%>
+                                                <form action="/beer/<%=beer._id%>/approve?_method=PUT&pending=true" class="approve" method="POST">
+                                                    <button class="Button pendingButton">
+                                                        <p>to pending</p>
+                                                    </button>
+                                                </form>
+                                                <%}%>
+                                                <%}%>
+
+
+                                                
+                                                <form class="deleteForm deleteBeer" action="/beer/<%=beer._id%>?_method=DELETE"
+                                                    method="POST">
+                                                    <button class="Button">
+                                                        <p>Delete</p>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <% } %>
+
+                    </div>
+                    <div class="card map" id='map'></div>
+                </section>
+
+
+
+                <div class="commentSection">
+                    <% if(userID) {%>
+                        <div class="card giveRating">
+                            <%if(userRating===0){%>
+
+                                <form class="ratingForm" action="/beer/<%=beer._id%>/ratings" method="POST">
+                                    <h2>Rate this beer</h2>
+                                    <div class="ratingInput">
+                                        <h3>Leave a rating:</h3>
+                                        <label for="rating1">1</label>
+                                        <input  type="radio" name="rating" id="rating1" value="1"
+                                            required>
+                                        <label for="rating2">2</label>
+                                        <input  type="radio" name="rating" id="rating2" value="2"
+                                            required>
+                                        <label for="rating3">3</label>
+                                        <input  type="radio" name="rating" id="rating3" value="3"
+                                            required>
+                                        <label for="rating4">4</label>
+                                        <input type="radio" name="rating" id="rating4" value="4"
+                                            required>
+                                        <label for="rating5">5</label>
+                                        <input  type="radio" name="rating" id="rating5" value="5"
+                                            required>
+                                    </div>
+
+                                    <div class="rate">
+                                        <div class="rate1"></div>
+                                        <div class="rate2"></div>
+                                        <div class="rate3"></div>
+                                        <div class="rate4"></div>
+                                        <div class="rate5"></div>
+                                    </div>
+
+                                </form>
+                                <%}else{%>
+                                    <div class="rated">
+                                        <p>You rated this beer:</p>
+                                        <div class="rating">
+                                            <%for(let i=0; i < userRating.rating; i++){ %>
+                                                <div class="fullBeer <%if(rated=="true"){%>ratedAnimation<%}%>"></div>
+
+                                                <% }%>
+                                                    <%for(let i=0; i < 5-userRating.rating; i++){%>
+                                                        <div class="emptyBeer"></div>
+                                                        <% }%>
+
+                                        </div>
+                                    </div>
+
+                                    <%}%>
+                        </div>
+
+
+
+                        <div class="card postComment">
+
+                            <h2>Post a comment</h2>
+
+
+
+                            <form class="validateForm commentForm" action="/beer/<%=beer._id%>/comments" method="POST"
+                                novalidate>
+
+
+                                <div class="commentInput">
+                                    <label for="comment">Leave a comment:</label>
+                                    <br>
+                                    <textarea class="validate" name="comment" id="comment" cols="30" rows="10"
+                                        required></textarea>
+                                </div>
+                                <button class="Button">Comment</button>
+
+                                <p class="fillMessage">Please fill out missing information</p>
+
+                            </form>
+                        </div>
+
+                        <% } %>
+
+                            <h1>Comment section:</h1>
+
+                            <% for(comment of comments){ %>
+                                <div class="card comment">
+
+
+
+
+                                    <div class="commentUser">
+                                        <b>
+                                            <%=comment.user.username%>:
+                                        </b>
+                                    </div>
+
+                                    <div class="commentMessage">
+                                        <%=comment.comment%>
+                                    </div>
+                                   
+                                    <%if((comment.user.id==userID) || isAdmin) { %>
+                                        <form class="deleteForm"
+                                            action="/beer/<%=beer._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                            method="POST">
+                                        
+                                        <button class="Button deleteButton">Delete</button>
+
+                                        </form>
+                                        <%} %>
+                                        <p class="time"><%=comment.timeOfPosting()%></p>
+
+
+                                </div>
+                                <%} %>
+
+                </div>
+
+
+
+
+
+
+            </main>
+            <script src="/javascript/images.js"></script>
+            <script src="/javascript/rating.js"></script>
+            <script src="/javascript/validateForm.js"></script>
+            <script src="/javascript/beerViewMap.js"></script>

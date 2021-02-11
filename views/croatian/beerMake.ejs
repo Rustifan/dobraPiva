@@ -1,18 +1,19 @@
-<%- layout("./boilerplate/layout.ejs") %>
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
     <link rel="stylesheet" href="/css/form.css">
     <main>
-        <h1>Add new beer</h1>
+        <h1>Dodaj novo pivo</h1>
         <form class ="validateForm" novalidate action="/beer/make" method="POST" enctype="multipart/form-data">
             <div>
-                <label for="name">Beer name</label>
+                <label for="name">Ime</label>
                 <input class="validate" type="text" id="name" placeholder="name*" name="name" required>
             </div>
             <div>
-                <label for="beerStyle">beer style</label>
+                <label for="beerStyle">Stil</label>
                 <input class="validate" type="text" id="beerStyle" placeholder="beer style*" name="beerStyle" required>
             </div>
             <div>
-                <label for="location">location</label>
+                <label for="location">Lokacija</label>
                 <input class="validate" type="text" id="location" placeholder="location*" name="location" required>
             </div>
             <div>
@@ -20,18 +21,18 @@
                 <input class="validate" type="number" step="any" id="abv" placeholder="abv*" name="abv" required>
             </div>
             <div>
-                <label for="description">description</label>
+                <label for="description">Opis</label>
                 <textarea id="description" name="description" rows=4 cols=20 required>
 
             </textarea>
             </div>
             <div>
-                <label for="img">upload image</label>
+                <label for="img">Dodaj slike</label>
                 <input type="file" name="image" id="img" accept="image/*" multiple>
             </div>
             <div>
-                <button>Send</button>
-                <p class="fillMessage">Please fill out missing information</p>
+                <button>Pošalji</button>
+                <p class="fillMessage">Molim unesite točne informacije</p>
             </div>
 
         </form>

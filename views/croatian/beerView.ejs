@@ -1,4 +1,5 @@
-<%-layout("/boilerplate/layout.ejs")%>
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
 
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
@@ -43,15 +44,15 @@
                                         <%=beer.rating%>
                                     </div>
                                     <% }%>
-                                        <div class="beerStyle"><b>Beer style: </b>
+                                        <div class="beerStyle"><b>Stil: </b>
                                             <%=beer.beerStyle%>
                                         </div>
                                         <div class="abv"><b>abv: </b><%=beer.abv%></div>
 
-                                        <div class="beerLocation"><b>Location: </b>
+                                        <div class="beerLocation"><b>Lokacija: </b>
                                             <%=beer.location.name%>
                                         </div>
-                                        <div class="beerDescription"><b>Description: </b>
+                                        <div class="beerDescription"><b>Opis: </b>
                                             <%=beer.description%>
                                         </div>
                                         
@@ -59,12 +60,12 @@
                                             <div class="buttons">
                                                 <div class="anchorButton">
                                                     <a href="/beer/<%=beer._id%>/edit">
-                                                        <p>edit</p>
+                                                        <p>uredi</p>
                                                     </a>
                                                 </div>
                                                 <div class="anchorButton">
                                                     <a href="/beer/<%=beer._id%>/images">
-                                                        <p>images</p>
+                                                        <p>slike</p>
                                                     </a>
                                                 </div>
                                                 
@@ -73,13 +74,13 @@
                                                 <%if(beer.pending){%>
                                                 <form action="/beer/<%=beer._id%>/approve?_method=PUT" class="approve" method="POST">
                                                     <button class="Button pendingButton">
-                                                        <p>Approve</p>
+                                                        <p>Odobri</p>
                                                     </button>
                                                 </form>
                                                 <%}else{%>
                                                 <form action="/beer/<%=beer._id%>/approve?_method=PUT&pending=true" class="approve" method="POST">
                                                     <button class="Button pendingButton">
-                                                        <p>to pending</p>
+                                                        <p>na čekanje</p>
                                                     </button>
                                                 </form>
                                                 <%}%>
@@ -90,7 +91,7 @@
                                                 <form class="deleteForm deleteBeer" action="/beer/<%=beer._id%>?_method=DELETE"
                                                     method="POST">
                                                     <button class="Button">
-                                                        <p>Delete</p>
+                                                        <p>Izbriši</p>
                                                     </button>
                                                 </form>
                                             </div>
@@ -108,9 +109,9 @@
                             <%if(userRating===0){%>
 
                                 <form class="ratingForm" action="/beer/<%=beer._id%>/ratings" method="POST">
-                                    <h2>Rate this beer</h2>
+                                    <h2>Ocijeni pivo</h2>
                                     <div class="ratingInput">
-                                        <h3>Leave a rating:</h3>
+                                        <h3>Ostavi rating:</h3>
                                         <label for="rating1">1</label>
                                         <input  type="radio" name="rating" id="rating1" value="1"
                                             required>
@@ -139,7 +140,7 @@
                                 </form>
                                 <%}else{%>
                                     <div class="rated">
-                                        <p>You rated this beer:</p>
+                                        <p>Dali ste ocjenu ovom pivu:</p>
                                         <div class="rating">
                                             <%for(let i=0; i < userRating.rating; i++){ %>
                                                 <div class="fullBeer <%if(rated=="true"){%>ratedAnimation<%}%>"></div>
@@ -159,7 +160,7 @@
 
                         <div class="card postComment">
 
-                            <h2>Post a comment</h2>
+                            <h2>Pošaljite komentar</h2>
 
 
 
@@ -168,21 +169,21 @@
 
 
                                 <div class="commentInput">
-                                    <label for="comment">Leave a comment:</label>
+                                    <label for="comment">Pošaljite komentar:</label>
                                     <br>
                                     <textarea class="validate" name="comment" id="comment" cols="30" rows="10"
                                         required></textarea>
                                 </div>
-                                <button class="Button">Comment</button>
+                                <button class="Button">Komentiraj</button>
 
-                                <p class="fillMessage">Please fill out missing information</p>
+                                <p class="fillMessage">Molim vas dodaje informacije koje nedostaju</p>
 
                             </form>
                         </div>
 
                         <% } %>
 
-                            <h1>Comment section:</h1>
+                            <h1>Komentari:</h1>
 
                             <% for(comment of comments){ %>
                                 <div class="card comment">
@@ -205,7 +206,7 @@
                                             action="/beer/<%=beer._id%>/comments/<%=comment._id%>?_method=DELETE"
                                             method="POST">
                                         
-                                        <button class="Button deleteButton">Delete</button>
+                                        <button class="Button deleteButton">Izbriši</button>
 
                                         </form>
                                         <%} %>

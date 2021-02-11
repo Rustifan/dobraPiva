@@ -1,0 +1,23 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+    <link rel="stylesheet" href="/css/chat.css">
+    <script src="/socketio/socket.io.js"></script>
+    <script>let username = "<%=username%>"</script>
+    <h1>pivski chat</h1>
+    <main>
+        <div class="chat">
+
+
+
+
+
+
+        </div>
+        <form class="sendForm" action="/chat">
+            <input type="text">
+            <button class="send">pošalji</button>
+        </form>
+
+    </main>
+
+    <script src="/javascript/chat.js"></script>

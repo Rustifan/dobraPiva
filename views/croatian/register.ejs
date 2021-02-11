@@ -1,0 +1,32 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+<link rel="stylesheet" href="/css/form.css">
+
+    <main>
+        <h1>Registracija</h1>
+        <form class="validateForm"action="/register" method="POST" novalidate> 
+            <div class="username">
+                <label for="username">Username</label>
+                <input class="validate"  type="text" id="username" name="username" required>
+            </div>
+            <div class="password">
+                <label for="password">Lozinka</label>
+                <input class="validate password" type="password" id="password" name="password" required>
+            </div>
+            <div class="repeatPassword">
+                <label for="repeatPassword">Ponovljena lozinka</label>
+                <input type="password" class="repeatPassword validate" id="repeatPassword" required>
+            </div>
+            <div class="email">
+                <label for="email">Email</label>
+                <input class="validate" type="email" id="email" name="email" required>
+            </div>
+            <button class="Button">Register</button>
+            <br>
+            <p class="fillMessage">Molim ispunite točne informacije</p>
+            <p class="repeatPassMessage">lozinke nisu iste</p>
+        </form>
+    </main>
+
+    <script src="/javascript/validateForm.js"></script>
+    <script src="/javascript/repeatPassValidation.js"></script>

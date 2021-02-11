@@ -1,0 +1,83 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+    <link rel="stylesheet" href="/css/beer.css">
+    
+    <script>let sortCategory = "<%=sortCategory%>";</script>
+    <script>let sortOrder = <%=sortOrder%> </script>
+    <script>const lastPage = <%=numOfPages%></script>
+
+
+    <div class="backgroundImage"></div>
+    <main class="BeerList">
+        <form action="/beer/find">
+            
+            <label for="find">Nađi pivo</label>
+            <span>
+                <input type="text" id="find" name="q">
+                <button>Traži</button>
+            </span>
+            
+            
+
+            <label for="category">kategorija</label>
+            <select name="category" id="category">
+                <option value="name">ime</option>
+                <option value="beerStyle">stil</option>
+                <option value="location">lokacija</option>
+            </select>
+
+        </form>
+        
+        <h1>Lista piva</h1>
+
+        <div class="list">
+            <div>
+            <a class = "beerTitle">
+                <span class="number"></span>
+                <span class="beerName"><p>ime</p></span>
+                <span class="beerRating"><p>rating</p></span>
+                <span class="beerStyle"><p>stil</p></span>
+                <span class="abv"><p>abv</p></span>
+                <span class="beerLocation"><p>lokacija</p></span>
+            </a>
+            </div>
+            <% let i = 1; %> 
+            <% for (let beer of beers){ %>
+                <div class="beerLinkDiv">
+                    <a class="beerLink" href="/beer/<%=beer._id%>">
+                    <span class="number"><%=i+(page-1)*beerPerPage%>.</span>
+                    
+                    <span class="beerName"><%=beer.name%> </span>
+                    <%if(beer.rating){%> 
+                    <span class="beerRating"><%=beer.rating%> </span>
+                    <%}else{%>
+                    <span class="beerRating">bez ratinga</span>
+                    <%} %>  
+                    <span class="beerStyle"><%=beer.beerStyle%></span>
+                    <span class="abv"><p><%=beer.abv%></p></span>
+
+                    <span class="beerLocation"><%=beer.location.name%></span>
+                </a>
+                <% i++; %> 
+                </div>
+
+
+                <% } %>
+            </div>
+            <%if(userID){%>
+            <div class="add">
+                <a href="/beer/make"><span>Dodaj novo pivo</span></a>
+            </div>
+            <%}%>
+
+
+
+
+        </div>
+                    
+    
+    </main>
+    <%-include("./partials/pages.ejs")%>
+
+    <script src="/javascript/sortBeer.js"></script>
+    <script src="/javascript/changePage.js"></script>

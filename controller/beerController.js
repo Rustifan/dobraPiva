@@ -58,18 +58,25 @@ module.exports.beerHome = catchAsync(async function(req, res)
     let beers = await Beer.find({pending: false}).sort([[sortCategory, sortOrder]])
         .limit(beerPerPage).skip(beerPerPage*(page-1));
     
-    const title = "beer";
+    const language = req.language;
+    const title = language == "croatian" ? "pivo" : "beer";
+    const path = `${language}/beer.ejs`;
+
+    
+
     const passObject = {beers, title, sortCategory, 
         sortOrder, page, beerPerPage, numOfPages}
     
-    res.render(title, passObject);
+    res.render(path, passObject);
 });
 
 module.exports.beerMakeGET = function(req, res)
 {
-    
-    const title = "beerMake";
-    res.render(title, {title});
+    const language = req.language;
+
+    const path = `${language}/beerMake.ejs`
+    const title = language == "croatian"? "dodaj pivo" : "make a new beer";
+    res.render(path, {title});
     
 }
 
@@ -108,7 +115,7 @@ module.exports.beerFind = catchAsync(async function(req, res){
 
 
     const category = req.query.category;
-    const title = "beer";
+    
     if(!search)
     {
         search = "";
@@ -148,9 +155,12 @@ module.exports.beerFind = catchAsync(async function(req, res){
     
     
 
+    const language = req.language;
+    const title = language == "croatian" ? "pivo" : "beer";
+    const path = `${language}/beer.ejs`;
+
     
-    
-    res.render(title, {beers, title, sortCategory, sortOrder, numOfPages, page, beerPerPage});
+    res.render(path, {beers, title, sortCategory, sortOrder, numOfPages, page, beerPerPage});
 
     
     
@@ -191,13 +201,19 @@ module.exports.beerMakePOST = catchAsync(async function(req, res)
     }
     beer.rating = 0;
     await beer.save();
+    const language = req.language;
     if(beer.pending)
     {
-        req.flash("sucess", "you sucessfully added a new beer. Your beer is pending for aproval.")
+        let msg = "you sucessfully added a new beer. Your beer is pending for aproval.";
+        if(language == "croatian"){msg = "Uspješno ste dodali pivo. Pivo je na čekanju. Ubrzo će ga odobriti naš administrator";}
+
+        req.flash("sucess", msg)
     }
     else
     {
-        req.flash("sucess", "you sucessfully added a new beer");
+        let msg = "you sucessfully added a new beer";
+        if(language == "croatian"){msg = "Uspješno ste dodali novo pivo";}
+        req.flash("sucess", msg);
     }
     res.redirect("/beer");
 });
@@ -207,7 +223,6 @@ module.exports.beerView = catchAsync(async function(req, res)
     const id = req.params.id;
     const beer = await findID(id, Beer);
     const comments = await Comment.find({beer}).populate("user");
-    const title = "beerView";
     let userRating = 0;
     const rated = req.query.rated;
     if(req.session.userID)
@@ -219,7 +234,12 @@ module.exports.beerView = catchAsync(async function(req, res)
         }
     }
 
-    res.render(title, {beer, title, comments, userRating, rated});
+    const language = req.language;
+
+    const title = beer.name;
+    const path = `${language}/beerView.ejs`
+
+    res.render(path, {beer, title, comments, userRating, rated});
 
 });
 
@@ -228,10 +248,12 @@ module.exports.beerEditGET = catchAsync(async function(req, res)
     const id = req.params.id;
     const beer = await findID(id, Beer);
 
-    const title = "beerEdit";
+    const language = req.language;
+
+    const title = language == "croatian" ? `uredi ${beer.name}` : `edit ${beer.name}`; 
+    const path = `${language}/beerEdit.ejs`
     
-    
-    res.render(title, {beer, title});
+    res.render(path, {beer, title});
 });
 
 module.exports.beerEditPUT = catchAsync(async function(req, res)
@@ -290,8 +312,11 @@ module.exports.imagesGET = catchAsync(async function(req, res)
 
     
     
-    const title = "editImages";
-    res.render(title,{title, beer, images});
+    const language = req.language;
+
+    const title = language == "croatian" ? `uredi slike` : `edit images`; 
+    const path = `${language}/editImages.ejs`
+    res.render(path,{title, beer, images});
 });
 
 module.exports.imagesDELETE = catchAsync(async function(req, res)
@@ -318,7 +343,9 @@ module.exports.imagesDELETE = catchAsync(async function(req, res)
         await beer.save();
     }
     else{
-        req.flash("err", "you must check at least one image");
+        let msg = "you must check at least one image";
+        if(req.language == "croatian"){msg = "morate označiti barem jednu sliku";}
+        req.flash("err", msg);
     }
     
     res.redirect(`/beer/${req.params.id}/images`);
@@ -340,7 +367,9 @@ module.exports.imagePOST = catchAsync(async function (req, res)
         }
         
     }else{
-        req.flash("err","error uploading images");
+        let msg = "error uploading images";
+        if(req.languge == "croatian"){msg = "greška u dodavanju slike";}
+        req.flash("err",msg);
     }
     await beer.save();
     res.redirect(`/beer/${req.params.id}/images`);
@@ -395,12 +424,17 @@ module.exports.beerPending = catchAsync(async function(req, res)
     let beers = await Beer.find({pending: true}).sort([[sortCategory, sortOrder]])
         .limit(beerPerPage).skip(beerPerPage*(page-1));
     
-        const title = "beerPending";
     
+    
+    const language = req.language;
+
+    const title = language == "croatian" ? `pive na čekanju` : `pending beers`; 
+    const path = `${language}/beerPending.ejs`
+
     const passObject = {beers, title, sortCategory, 
         sortOrder, page, beerPerPage, numOfPages}
     
-   res.render(title, passObject);
+   res.render(path, passObject);
    
    
 

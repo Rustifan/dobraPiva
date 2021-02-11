@@ -1,26 +1,27 @@
-<%-layout("/boilerplate/layout.ejs")%>
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
     <link rel="stylesheet" href="/css/users.css">
 
     <script>const numOfPages =<%=numOfPages%> </script>
 
-    <h1>Users</h1>
+    <h1>Korisnici</h1>
 
     <form class="userForm" action="/users">
         <label for="serachUser" style="display: none;"></label>
         <input id="searchUser" type="text" placeholder="Search user" name="search">
-        <button>Search</button>
+        <button>Traži</button>
     </form>
 
     <section class="userList">
         <div class="user template">
             <span class="username clickSort">
-                <p>username</p>
+                <p>korisnik</p>
             </span>
             <span class="lastTimeActive clickSort">
-                <p>last time active</p>
+                <p>zadnje aktivan</p>
             </span>
             <span class="numberOfComments clickSort">
-                <p>number of comments</p>
+                <p>broj komentara</p>
             </span>
             <span class="email">email</span>
 
@@ -59,6 +60,8 @@
 
     </div>
     <%-include("./partials/pages.ejs")%>
+
+
     
 
 

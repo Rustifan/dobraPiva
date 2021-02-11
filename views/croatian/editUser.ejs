@@ -1,0 +1,32 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+ 
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/editUser.css">
+
+<main>
+    <h1><%=user.username%> postavke</h1>
+
+    <form class="validateForm" method="POST" action="/users/<%=user._id%>?_method=PUT" novalidate>
+        <div>
+            <label for="username">korisnik</label>
+            <input class="validate" type="text" id="username" placeholder="username" name="username" value="<%=user.username%>" required>
+        </div>
+        <div>
+            <label for="email">email</label>
+            <input type="email" class="validate" id="email" placeholder="email" name="email" value="<%=user.email%>" required>
+        </div>
+        <div class="anchorButton">
+            <a href="/users/<%=user._id%>/password"><p>promijeni lozinku</p></a>
+        </div>
+        <button class="Button saveChanges">Spremi promjene</button>
+
+    <p class="fillMessage">Molim vas ispunite sve informacije</p>
+
+    </form>
+
+</main>
+
+
+
+<script src="/javascript/validateForm.js"></script>

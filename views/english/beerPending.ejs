@@ -1,0 +1,88 @@
+<%- layout("./english/boilerplate/layout.ejs") %>
+
+
+    <link rel="stylesheet" href="/css/beer.css">
+    
+    <script>let sortCategory = "<%=sortCategory%>";</script>
+    <script>let sortOrder = <%=sortOrder%> </script>
+    <script>const lastPage = <%=numOfPages%></script>
+
+
+    <main class="BeerList">
+       
+        <div class="list">
+            
+        </div>
+        <div class="list">
+            <h1>Beer list</h1>
+            <div class="beerTitle">
+            <a class = "beerTitle">
+                <span class="number"></span>
+                <span class="beerName"><p>name</p></span>
+                <span class="beerRating"><p>rating</p></span>
+                <span class="beerStyle"><p>style</p></span>
+                <span class="beerLocation"><p>location</p></span>
+            </a>
+        </div>
+            <% let i = 1; %> 
+            <% for (let beer of beers){ %>
+                <div class="beerLinkDiv">
+                    <a class="beerLink" href="/beer/<%=beer._id%>">
+                    <span class="number"><%=i+(page-1)*beerPerPage%>.</span>
+                    
+                    <span class="beerName"><%=beer.name%> </span>
+                    <%if(beer.rating){%> 
+                    <span class="beerRating"><%=beer.rating%> </span>
+                    <%}else{%>
+                    <span class="beerRating">no rating</span>
+                    <%} %>  
+                    <span class="beerStyle"><%=beer.beerStyle%></span>
+                    <span class="beerLocation"><%=beer.location.name%></span>
+                </a>
+                <% i++; %> 
+                </div>
+
+
+                <% } %>
+            </div>
+            <%if(numOfPages>1){%>
+            <div class="pages">
+                <%if(parseInt(page)!=1){%>
+                <a class="first" href="/">first</a>
+                <%}%>
+
+                <%if(parseInt(page)-1>0){%>
+                <a class="before" href="/">before</a>    
+                <%}%>
+                  
+                <%for(let i = -3; i<4; i++){%>
+                    <%if(i+parseInt(page)>0 && i+parseInt(page)<=numOfPages){%>
+                    <%if(i===0){%>
+                        <b><%=page%></b>
+                    <%}else{%>
+                    
+                        <%if(parseInt(page)+i<parseInt(numOfPages)){%>
+                        <a class="page<%=parseInt(page)+i%>" href="/"><%=parseInt(page)+i%></a>
+                        <%}%>
+                    <%}%>
+
+                    <%}%>
+                    
+                    
+                <%}%>
+                <%}%>
+
+                <%if(parseInt(page)+1<=parseInt(numOfPages)){%>
+                <a class="next" href="/">next</a>    
+                <%}%>
+                <%if(parseInt(page)<numOfPages-1){%>
+                <a class="last" href="/">last</a> 
+                <%}%>
+
+            </div>
+                    
+        
+    </main>
+    
+    <script src="/javascript/sortBeer.js"></script>
+    <script src="/javascript/changePage.js"></script>

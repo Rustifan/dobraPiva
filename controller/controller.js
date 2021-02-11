@@ -5,6 +5,10 @@ module.exports.userController = require("../controller/userController");
 module.exports.ratingController = require("../controller/ratingController");
 module.exports.chat = function(req, res)
 {
-    const title = "chat";
-    res.render(title,{title});
+    const language = req.language;
+   
+    const title = "Chat"; 
+    const path = `${language}/chat.ejs`;
+
+    res.render(path,{title});
 }

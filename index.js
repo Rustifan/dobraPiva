@@ -9,7 +9,8 @@ const beerRouter = require("./router/beerRouter");
 const commentRouter = require("./router/commentRouter");
 const userRouter = require("./router/userRouter");
 const ratingRouter = require("./router/ratingRouter");
-const methodOverride=require("method-override");
+const languageRouter = require("./controller/languageRouter");
+const methodOverride = require("method-override");
 const ExpressError = require("./errorManage/ExpressError"); 
 const errorHandle = require("./errorManage/errorHandle");
 const engine = require("ejs-mate");
@@ -21,6 +22,7 @@ const setOriginalUrl = require("./middleware/setOriginalUrl");
 const chatControll = require("./controller/chatSocketControll");
 const mustBeLogged = require("./middleware/mustBeLogged");
 const clickMid = require("./middleware/clickMid");
+const languageMid = require("./middleware/languageMid");
 //security
 const helmet = require("helmet");
 const contentSecurityPolicy = require("./middleware/helmetContentSecurityPol");
@@ -62,6 +64,7 @@ app.use(mongoSanitize());
 app.use(htmlSanitazer());
 app.use(setLocals);
 app.use(clickMid);
+app.use(languageMid);
 
 //routes
 app.get("/",setOriginalUrl, controller.home);
@@ -70,6 +73,7 @@ app.use("/beer/:id/ratings", paramFunction, ratingRouter);
 app.use("/beer/:id/comments", paramFunction, commentRouter);
 app.get("/chat", mustBeLogged, controller.chat);
 app.use("/", userRouter);
+app.use("/", languageRouter);
 app.get("/*", (req, res)=>{throw(new ExpressError("Reqested page is not found. Error 404", 404));});
 
 

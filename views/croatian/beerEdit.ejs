@@ -1,0 +1,39 @@
+<%- layout("./croatian/boilerplate/layout.ejs") %>
+
+    <link rel="stylesheet" href="/css/form.css">
+
+    <main>
+        <h1>Uredi pivo</h1>
+        <form class="validateForm" action="/beer/<%=beer._id%>/edit?_method=PUT" method="POST" novalidate>
+            <div>
+                <label for="name">Ime</label>
+                <input class="validate" type="text" id="name" placeholder="ime" name="name" required value="<%=beer.name%>">
+                
+            </div>
+            <div>
+                <label for="beerStyle">Stil</label>
+                <input class="validate" type="text" id="beerStyle" placeholder="beer style" name="beerStyle" required
+                    value="<%=beer.beerStyle%>">
+            </div>
+            <div>
+                <label for="location">Lokacija</label>
+                <input class="validate" type="text" id="location" placeholder="mjesto" name="location" required value="<%=beer.location.name%>">
+            </div>
+            <div>
+                <label for="abv">abv</label>
+                <input class="validate" type="number" step="any" id="abv" placeholder="abv*" name="abv" required value=<%=beer.abv%>>
+            </div>
+            <div>
+                <label for="description">Opis</label>
+                <textarea id="description" name="description" rows=4 cols=20 required><%=beer.description%></textarea>
+            </div>
+            
+            <div>
+                <button>Uredi</button>
+                <p class="fillMessage">Molim vas unesite točne informacije</p>
+            </div>
+        </form>
+
+    </main>
+
+    <script src="/javascript/validateForm.js"></script>
