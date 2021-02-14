@@ -1,7 +1,9 @@
 const password = document.querySelector("input.password");
 const repeatPassword = document.querySelector("input.repeatPassword");
-const button = document.querySelector("button");
+const button = document.querySelector("form>button");
 const message = document.querySelector("p.repeatPassMessage");
+
+
 
 button.addEventListener("click", (event)=>{
 
