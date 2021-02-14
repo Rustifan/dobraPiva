@@ -6,7 +6,13 @@ module.exports = function(io)
         if(socket.request.session.username)
         {
             const username = socket.request.session.username;
-            io.emit("greet", `${username} connencted. Welcome ${username}`);
+            
+            let msg = "connected. Welcome";
+            if(socket.request.session.language == "croatian")
+            {
+                msg = "se pridružuje. Pozdrav ";
+            }
+            io.emit("greet", `${username} ${msg} ${username}`);
 
             socket.on("message", (data)=>{
                 io.emit("message", data);

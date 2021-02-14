@@ -26,10 +26,12 @@
             <div class="bar2 bars"></div>
             <div class="bar3 bars"></div>
         </div>
+            <a href="/" class ="languageBtn">HR</a>
+
             <a href="/">Početna</a>
             <a href="/beer">Piva</a>
             <% if(isAdmin){%>
-                <a href="/beer/pending">Na čekanju</a>
+                <a href="/beer/pending">Čekanje</a>
             <%}%>
             <% if(userID){%>
         
@@ -44,7 +46,6 @@
             <img class="userIcon" src="/svg/beerUser.svg" alt="beer user icon">
             
             
-            <a href="/" class ="languageBtn">Jezik</a>
             
             <% if(!userID){%>
             <a href="/login">Prijava</a>

@@ -126,8 +126,9 @@ map.on('load', function () {
         new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(
-                `${name} <br> ${rating} <br>
-                <a href=/beer/${id}>view </a>`
+                `<a href=/beer/${id}>${name} </a>
+                <br> ${rating} <br>
+                `
             )
             .addTo(map);
     });
