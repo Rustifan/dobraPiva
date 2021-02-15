@@ -9,14 +9,21 @@ html{
 }
 body{
     
-    background-image: url("/image/cheers.jpg");
-    background-size:cover;
-    background-position: center;
-    background-repeat:no-repeat;
+   
     height: 100%;
     
 }
 
+.background{
+    background-image: url("/image/cheers.jpg");
+    background-size:cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+}
 .userList{
     width: 80%;
     

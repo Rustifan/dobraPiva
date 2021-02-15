@@ -37,7 +37,7 @@ const userSchema = new Schema({
 
 
 
-userSchema.methods.getDate = function()
+userSchema.methods.getDate = function(language = "english")
 {
     let result = null;
 
@@ -55,11 +55,33 @@ userSchema.methods.getDate = function()
 
     if(isSameDay(now, lastTime))
     {
-       result = "today";
+        switch(language)
+        {
+            case "english":
+            result = "today";
+            break;
+            case "croatian":
+            result = "danas";
+            break;
+            default:
+            result = "today";
+            break;
+        }
     }
     else if(isSameDay(yesterday, lastTime))
     {
-        result = "yesterday";
+        switch(language)
+        {
+            case "english":
+            result = "yesterday";
+            break;
+            case "croatian":
+            result = "jučer";
+            break;
+            default:
+            result = "yesterday";
+            break;
+        }
     }
     else
     {

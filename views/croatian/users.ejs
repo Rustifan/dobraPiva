@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/css/users.css">
 
     <script>const numOfPages =<%=numOfPages%> </script>
-
+    <div class = "background"></div>
     <h1>Korisnici</h1>
 
     <form class="userForm" action="/users">
@@ -33,7 +33,7 @@
                     <%=user.username%>
                 </span>
                 <span class="lastTimeActive">
-                    <%=user.getDate()%>
+                    <%=user.getDate("croatian")%>
                 </span>
                 <%if(user.numberOfComments>0){%>
                     <span class="numberOfComments"><a href="/users/<%=user._id%>/comments">

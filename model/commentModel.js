@@ -27,7 +27,7 @@ const CommentScheema = new Schema({
     }     
 })
 
-CommentScheema.methods.timeOfPosting = function()
+CommentScheema.methods.timeOfPosting = function(language = "english")
 {
     const today = new Date();
     const yesterday = new Date(Date.now() - 864e5);
@@ -35,7 +35,7 @@ CommentScheema.methods.timeOfPosting = function()
 
     if(isSameDay(yesterday, date))
     {
-        return "yesterday";
+        return language == "english" ?  "yesterday" : "jučer";
     }
     else if(isSameDay(today, date))
     {
@@ -44,21 +44,51 @@ CommentScheema.methods.timeOfPosting = function()
         const diff = hour - commentHour;
         if(diff > 0)
         {
-            return diff + " hours ago";
+            let result = null;
+
+            switch(language)
+            {
+                case "croatian":
+                
+                result ="prije "+ diff + hoursOnCroatian(diff);
+                break;
+                default:
+                result = diff + " hours ago";
+                break;
+            }
+
+            return result;
         }
         else
         {
             const minutes = today.getMinutes();
             const commentMinutes = date.getMinutes();
             const diff = minutes-commentMinutes;
-            if(diff>0)
+            
+            if(language == "english")
             {
-                return diff + " minutes ago";
+                if(diff>0)
+                {
+                    return diff + " minutes ago";
                 
+                }
+                else
+                {
+                    return "just now";
+                }
             }
-            else
+            else if(language == "croatian")
             {
-                return "just now";
+                if(diff>0)
+                {
+                    
+                    
+                    return "prije " + diff + minutesOnCroatian(diff);
+                }
+                else
+                {
+                    return "malo prije";
+                }
             }
         }
     }
@@ -77,6 +107,49 @@ CommentScheema.methods.timeOfPosting = function()
     
 
 }
+
+const minutesOnCroatian = (minutes)=>
+{
+    let result = null;
+    if(minutes >4 && minutes <= 20)
+    {
+        result = " minuta";
+    }
+    else if(minutes % 10 == 1)
+    {
+        result = " minut";
+    }
+    else if(minutes % 10 <= 4)
+    {
+        result = " minute";
+    }
+    else{
+        result = " minuta";
+    }
+    return result;
+}
+
+const hoursOnCroatian = (hours)=>
+{
+    let result = null;
+    if(hours >4 && hours <= 20)
+    {
+        result = " sati";
+    }
+    else if(hours % 10 == 1)
+    {
+        result = " sat";
+    }
+    else if(hours % 10 <= 4)
+    {
+        result = " sata";
+    }
+    else{
+        result = " sati";
+    }
+    return result;
+}
+
 
 const Comment = mongoose.model("Comment", CommentScheema);
 module.exports = Comment;

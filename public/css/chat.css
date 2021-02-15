@@ -2,13 +2,17 @@ html, body{
     height: 100%;
 }
 
-body{
-  background-image: url("/image/background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: color;
-  
 
+.background{
+    background-image: url("/image/background.jpg");
+
+    background-size:cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    position:fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
 }
 
 main{
@@ -46,7 +50,7 @@ h1{
 
 .sendForm{
    width:50%;
-
+    display: flex;
 }
 
 .sendForm>input{

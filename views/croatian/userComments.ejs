@@ -13,7 +13,7 @@
         
         <div class="userComment card">
              <p class="commentMsg"><%=comment.comment%></p>
-             <p class="commentDate"><%=comment.timeOfPosting()%></p>
+             <p class="commentDate"><%=comment.timeOfPosting("croatian")%></p>
              <% if(comment.user._id.toString()==userID || isAdmin) { %>
                 <form class="deleteForm"
                     action="/beer/<%=comment.beer._id%>/comments/<%=comment._id%>?_method=DELETE"
